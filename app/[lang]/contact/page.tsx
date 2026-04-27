@@ -1,8 +1,25 @@
 import { setRequestLocale, getTranslations } from "next-intl/server";
+import type { Metadata } from "next";
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { ContactSidebar } from "@/components/sections/ContactSidebar";
+
+export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
+  const { lang } = await params;
+  const t = await getTranslations({ locale: lang, namespace: "meta.contact" });
+  const base = process.env.NEXT_PUBLIC_SITE_URL ?? "https://zergrupo.com";
+  return {
+    title: t("title"),
+    description: t("desc"),
+    alternates: {
+      languages: {
+        es: `${base}/es/contact`,
+        en: `${base}/en/contact`,
+      },
+    },
+  };
+}
 
 export default async function ContactPage({
   params,

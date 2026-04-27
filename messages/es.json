@@ -137,6 +137,30 @@
     "privacy": "Política de privacidad",
     "terms": "Términos de uso"
   },
+  "meta": {
+    "home": {
+      "title": "grupozer — Tecnología que simplifica lo cotidiano",
+      "desc": "Grupo ZER es una empresa dominicana que diseña, desarrolla y opera soluciones digitales que simplifican la vida cotidiana."
+    },
+    "about": {
+      "title": "Nosotros — Grupo ZER",
+      "desc": "Conoce la historia, misión, visión y valores de Grupo ZER, holding tecnológico dominicano."
+    },
+    "portfolio": {
+      "title": "Portafolio — Grupo ZER",
+      "desc": "Descubre SafePickup y los productos digitales del grupo."
+    },
+    "contact": {
+      "title": "Contacto — Grupo ZER",
+      "desc": "Escríbenos para explorar alianzas, conocer nuestros productos o contactar al equipo."
+    },
+    "privacy": {
+      "title": "Política de privacidad — Grupo ZER"
+    },
+    "terms": {
+      "title": "Términos de uso — Grupo ZER"
+    }
+  },
   "__title": "grupozer — Tecnología que simplifica lo cotidiano",
   "__desc": "Grupo ZER — empresa dominicana que diseña, desarrolla y opera soluciones digitales que simplifican la vida cotidiana de personas y empresas."
 }

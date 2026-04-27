@@ -137,6 +137,30 @@
     "privacy": "Privacy Policy",
     "terms": "Terms of Use"
   },
+  "meta": {
+    "home": {
+      "title": "grupozer — Technology that simplifies everyday life",
+      "desc": "Grupo ZER is a Dominican company that designs, develops, and operates digital solutions that simplify everyday life."
+    },
+    "about": {
+      "title": "About — Grupo ZER",
+      "desc": "Learn about the story, mission, vision, and values of Grupo ZER, a Dominican technology holding."
+    },
+    "portfolio": {
+      "title": "Portfolio — Grupo ZER",
+      "desc": "Discover SafePickup and the group's digital products."
+    },
+    "contact": {
+      "title": "Contact — Grupo ZER",
+      "desc": "Get in touch to explore partnerships, learn about our products, or reach our team."
+    },
+    "privacy": {
+      "title": "Privacy Policy — Grupo ZER"
+    },
+    "terms": {
+      "title": "Terms of Use — Grupo ZER"
+    }
+  },
   "__title": "grupozer — Technology that simplifies everyday life",
   "__desc": "Grupo ZER — a Dominican company that designs, develops, and operates digital solutions that simplify the everyday lives of people and businesses."
 }
