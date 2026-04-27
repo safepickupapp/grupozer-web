@@ -4,6 +4,8 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { locales, type Locale } from "@/i18n/config";
+import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
 
 const manrope = Manrope({
   subsets: ["latin"],
@@ -36,7 +38,9 @@ export default async function LocaleLayout({
     <html lang={lang} className={manrope.variable}>
       <body className="font-sans text-ink bg-white antialiased">
         <NextIntlClientProvider messages={messages}>
+          <Header />
           {children}
+          <Footer />
         </NextIntlClientProvider>
       </body>
     </html>
