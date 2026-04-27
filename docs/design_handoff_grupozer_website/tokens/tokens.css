@@ -1,0 +1,92 @@
+/* ─────────────────────────────────────────────────────────
+   Grupo ZER — Brand tokens (canonical)
+   These values are the single source of truth for brand
+   visuals. Do not duplicate them inline; import this file
+   and reference the custom properties.
+   Pantones reference identity manual §11.6.
+   ───────────────────────────────────────────────────────── */
+:root {
+  /* ── Brand palette ── */
+  --color-navy:        #00205C;  /* Pantone 281 C  — primary institutional */
+  --color-sky:         #4197CB;  /* Pantone 7688 C — accent / interaction */
+  --color-gray:        #76777A;  /* Pantone Cool Gray 9 C — neutral / body copy */
+
+  /* ── Tonal extensions (allowed; derived from palette) ── */
+  --color-navy-90:     #0a2c66;
+  --color-navy-80:     #1a3b75;
+  --color-sky-soft:    #e6f0f8;
+  --color-gray-60:     #9ea0a3;
+  --color-gray-20:     #e7e7e9;
+  --color-gray-10:     #f3f3f4;
+
+  /* ── Surface ── */
+  --color-paper:       #fafafa;
+  --color-white:       #ffffff;
+  --color-ink:         #1c1c20;
+  --color-footer-bg:   #0a1430;
+
+  /* ── Type ── */
+  --font-sans: 'Manrope', system-ui, -apple-system, "Segoe UI", sans-serif;
+  --weight-extralight: 200;
+  --weight-light:      300;
+  --weight-regular:    400;
+  --weight-medium:     500;
+  --weight-semibold:   600;
+  --weight-bold:       700;
+  --weight-extrabold:  800;
+
+  /* Type scale (clamp() for fluid sizing) */
+  --text-h1:     clamp(40px, 6.4vw, 84px);
+  --text-h2:     clamp(32px, 4.2vw, 52px);
+  --text-h3:     clamp(22px, 2.4vw, 28px);
+  --text-lede:   clamp(16px, 1.2vw, 19px);
+  --text-body:   16px;
+  --text-small:  14px;
+  --text-caption:12px;
+
+  /* ── Radius ── */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --radius-pill: 999px;
+
+  /* ── Shadow (Navy-tinted) ── */
+  --shadow-sm: 0 1px 2px rgba(0, 32, 92, 0.04), 0 1px 3px rgba(0, 32, 92, 0.06);
+  --shadow-md: 0 8px 24px -10px rgba(0, 32, 92, 0.18), 0 2px 6px rgba(0, 32, 92, 0.06);
+  --shadow-lg: 0 30px 60px -20px rgba(0, 32, 92, 0.28), 0 12px 24px -12px rgba(0, 32, 92, 0.12);
+
+  /* ── Spacing scale (8px base) ── */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+  --space-10: 128px;
+
+  /* ── Layout ── */
+  --container-max: 1200px;
+  --container-padding: 28px;
+  --section-padding-y: 110px;
+
+  /* ── Logo minimums (spec §11.5) ── */
+  --logo-min-desktop: 120px;
+  --logo-min-mobile:  100px;
+  --isotype-min:      32px;
+
+  /* ── Motion ── */
+  --ease-out: cubic-bezier(0.2, 0.7, 0.3, 1);
+  --duration-fast: 150ms;
+  --duration-base: 250ms;
+  --duration-slow: 700ms;
+}
+
+@media (max-width: 720px) {
+  :root {
+    --container-padding: 20px;
+    --section-padding-y: 80px;
+  }
+}

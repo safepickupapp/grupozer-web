@@ -1,0 +1,1812 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>grupozer — Tecnología que simplifica lo cotidiano</title>
+<meta name="description" content="Grupo ZER — empresa dominicana que diseña, desarrolla y opera soluciones digitales que simplifican la vida cotidiana de personas y empresas.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap">
+<style>
+  /* ─────────────────────────────────────────────
+     Grupo ZER — Brand tokens
+     Per identity manual (section 11.6/11.7)
+     ───────────────────────────────────────────── */
+  :root {
+    --navy:      #00205C;     /* Pantone 281 C   — primary */
+    --navy-90:   #0a2c66;
+    --navy-80:   #1a3b75;
+    --sky:       #4197CB;     /* Pantone 7688 C — accent */
+    --sky-soft:  #e6f0f8;
+    --gray:      #76777A;     /* Pantone Cool Gray 9 C — neutral */
+    --gray-60:   #9ea0a3;
+    --gray-20:   #e7e7e9;
+    --gray-10:   #f3f3f4;
+    --paper:     #fafafa;
+    --white:     #ffffff;
+    --ink:       #1c1c20;
+
+    --radius-sm: 8px;
+    --radius:    14px;
+    --radius-lg: 22px;
+
+    --shadow-sm: 0 1px 2px rgba(0, 32, 92, 0.04), 0 1px 3px rgba(0, 32, 92, 0.06);
+    --shadow:    0 8px 24px -10px rgba(0, 32, 92, 0.18), 0 2px 6px rgba(0, 32, 92, 0.06);
+    --shadow-lg: 0 30px 60px -20px rgba(0, 32, 92, 0.28), 0 12px 24px -12px rgba(0, 32, 92, 0.12);
+
+    --font: 'Manrope', system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    font-family: var(--font);
+    color: var(--ink);
+    background: var(--white);
+    font-weight: 400;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  img, svg { display: block; max-width: 100%; }
+  a { color: inherit; text-decoration: none; }
+  button { font-family: inherit; cursor: pointer; border: 0; background: none; }
+
+  ::selection { background: var(--navy); color: #fff; }
+
+  /* Layout */
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 28px; }
+  @media (max-width: 640px) { .wrap { padding: 0 20px; } }
+
+  /* ─────────── Wordmark (grupo + zer) ─────────── */
+  .wordmark {
+    font-family: var(--font);
+    font-size: 28px;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    display: inline-flex;
+    align-items: baseline;
+  }
+  .wordmark .grupo { font-weight: 200; color: var(--gray); }
+  .wordmark .zer   { font-weight: 800; color: var(--navy); }
+  .wordmark.reverse .grupo { color: rgba(255,255,255,0.78); }
+  .wordmark.reverse .zer   { color: #fff; }
+
+  /* ─────────── Logo lockup (isotype + wordmark) ─────────── */
+  .logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .logo .iso {
+    width: 36px; height: 36px;
+    flex-shrink: 0;
+  }
+
+  /* ─────────── Header / Nav ─────────── */
+  .site-header {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: saturate(160%) blur(14px);
+    -webkit-backdrop-filter: saturate(160%) blur(14px);
+    border-bottom: 1px solid transparent;
+    transition: border-color .2s ease, background .2s ease;
+  }
+  .site-header.scrolled {
+    border-bottom-color: var(--gray-20);
+    background: rgba(255,255,255,0.92);
+  }
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 76px;
+  }
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .nav-links a {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--ink);
+    padding: 8px 0;
+    position: relative;
+    transition: color .15s;
+  }
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; bottom: 2px;
+    height: 1.5px;
+    background: var(--sky);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .25s ease;
+  }
+  .nav-links a:hover { color: var(--navy); }
+  .nav-links a:hover::after { transform: scaleX(1); }
+
+  .nav-right { display: flex; align-items: center; gap: 18px; }
+
+  /* Language switcher */
+  .lang {
+    display: inline-flex;
+    border: 1px solid var(--gray-20);
+    border-radius: 999px;
+    padding: 3px;
+    background: var(--white);
+  }
+  .lang button {
+    font-size: 12.5px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    padding: 6px 14px;
+    border-radius: 999px;
+    color: var(--gray);
+    transition: all .18s ease;
+  }
+  .lang button.active {
+    background: var(--navy);
+    color: #fff;
+  }
+
+  /* Mobile nav */
+  .menu-btn { display: none; }
+  @media (max-width: 880px) {
+    .nav-links { display: none; }
+    .nav-links.open {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 76px; left: 0; right: 0;
+      background: #fff;
+      padding: 16px 28px 28px;
+      border-bottom: 1px solid var(--gray-20);
+      gap: 6px;
+    }
+    .nav-links.open a { padding: 14px 0; border-bottom: 1px solid var(--gray-10); font-size: 16px; }
+    .menu-btn {
+      display: inline-flex;
+      width: 40px; height: 40px;
+      align-items: center; justify-content: center;
+      border-radius: 10px;
+    }
+    .menu-btn:hover { background: var(--gray-10); }
+  }
+
+  /* ─────────── Buttons ─────────── */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: -0.005em;
+    padding: 14px 24px;
+    border-radius: 999px;
+    transition: transform .15s ease, box-shadow .2s ease, background .2s ease, color .2s ease;
+    white-space: nowrap;
+  }
+  .btn-primary {
+    background: var(--navy);
+    color: #fff;
+    box-shadow: 0 6px 18px -6px rgba(0,32,92,0.5);
+  }
+  .btn-primary:hover { background: var(--navy-90); transform: translateY(-1px); box-shadow: 0 10px 24px -8px rgba(0,32,92,0.55); }
+  .btn-secondary {
+    background: transparent;
+    color: var(--navy);
+    border: 1.5px solid var(--gray-20);
+  }
+  .btn-secondary:hover { border-color: var(--navy); background: var(--white); }
+  .btn-accent {
+    background: var(--sky);
+    color: #fff;
+    box-shadow: 0 6px 18px -6px rgba(65,151,203,0.55);
+  }
+  .btn-accent:hover { background: #3589bd; transform: translateY(-1px); }
+  .btn-ghost {
+    color: var(--navy);
+    padding: 10px 0;
+    font-weight: 700;
+  }
+  .btn-ghost .arrow { transition: transform .2s; }
+  .btn-ghost:hover .arrow { transform: translateX(4px); }
+
+  /* ─────────── Hero ─────────── */
+  .hero {
+    position: relative;
+    padding: 96px 0 120px;
+    overflow: hidden;
+    background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  }
+  .hero::before {
+    /* atmospheric brand-blue corner glow */
+    content: '';
+    position: absolute;
+    top: -200px; right: -200px;
+    width: 720px; height: 720px;
+    background: radial-gradient(circle, rgba(65,151,203,0.18) 0%, rgba(65,151,203,0) 60%);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -260px; left: -240px;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(0,32,92,0.10) 0%, rgba(0,32,92,0) 60%);
+    pointer-events: none;
+  }
+  .hero .wrap { position: relative; z-index: 1; }
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--sky);
+    margin-bottom: 24px;
+  }
+  .eyebrow::before {
+    content: '';
+    width: 28px; height: 1.5px;
+    background: var(--sky);
+  }
+  h1.headline {
+    font-size: clamp(40px, 6.4vw, 84px);
+    font-weight: 800;
+    line-height: 1.02;
+    letter-spacing: -0.035em;
+    margin: 0 0 28px;
+    color: var(--navy);
+    max-width: 14ch;
+    text-wrap: balance;
+  }
+  h1.headline .light {
+    font-weight: 200;
+    color: var(--gray);
+    display: block;
+  }
+  .subhead {
+    font-size: clamp(17px, 1.4vw, 21px);
+    font-weight: 300;
+    color: var(--ink);
+    max-width: 60ch;
+    line-height: 1.5;
+    margin: 0 0 40px;
+  }
+  .cta-row { display: flex; flex-wrap: wrap; gap: 14px; }
+
+  /* Hero visual — abstract isotype-derived motif */
+  .hero-visual {
+    position: absolute;
+    top: 50%;
+    right: -60px;
+    transform: translateY(-50%);
+    width: 460px; height: 460px;
+    z-index: 0;
+    opacity: 0.95;
+  }
+  @media (max-width: 1100px) { .hero-visual { display: none; } }
+
+  /* ─────────── Generic section ─────────── */
+  section { padding: 110px 0; position: relative; }
+  @media (max-width: 720px) { section { padding: 80px 0; } }
+
+  .section-eyebrow {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--sky);
+    margin: 0 0 14px;
+  }
+  h2.section-title {
+    font-size: clamp(32px, 4.2vw, 52px);
+    font-weight: 800;
+    color: var(--navy);
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    margin: 0 0 20px;
+    max-width: 22ch;
+    text-wrap: balance;
+  }
+  .section-lede {
+    font-size: clamp(16px, 1.2vw, 19px);
+    font-weight: 300;
+    color: var(--gray);
+    max-width: 60ch;
+    margin: 0;
+  }
+
+  /* ─────────── Pillars ─────────── */
+  .pillars {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    margin-top: 60px;
+  }
+  @media (max-width: 880px) { .pillars { grid-template-columns: 1fr; gap: 18px; } }
+  .pillar {
+    background: #fff;
+    border: 1px solid var(--gray-20);
+    border-radius: var(--radius-lg);
+    padding: 36px 30px 34px;
+    position: relative;
+    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  }
+  .pillar:hover {
+    transform: translateY(-4px);
+    border-color: rgba(65,151,203,0.4);
+    box-shadow: var(--shadow-lg);
+  }
+  .pillar-icon {
+    width: 52px; height: 52px;
+    border-radius: 14px;
+    background: var(--sky-soft);
+    color: var(--sky);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 22px;
+  }
+  .pillar h3 {
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.015em;
+    color: var(--navy);
+    margin: 0 0 12px;
+  }
+  .pillar p {
+    font-size: 15.5px;
+    color: var(--gray);
+    margin: 0;
+    line-height: 1.6;
+  }
+  .pillar-num {
+    position: absolute;
+    top: 28px; right: 30px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--gray-60);
+    letter-spacing: 0.04em;
+  }
+
+  /* ─────────── About teaser (split) ─────────── */
+  .about-teaser {
+    background: var(--paper);
+    border-top: 1px solid var(--gray-20);
+    border-bottom: 1px solid var(--gray-20);
+  }
+  .split {
+    display: grid;
+    grid-template-columns: 1fr 1.05fr;
+    gap: 80px;
+    align-items: center;
+  }
+  @media (max-width: 900px) { .split { grid-template-columns: 1fr; gap: 40px; } }
+  .split-art {
+    aspect-ratio: 5/4;
+    border-radius: var(--radius-lg);
+    background: var(--navy);
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+  }
+  .split-art::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(circle at 30% 20%, rgba(65,151,203,0.55) 0%, rgba(65,151,203,0) 50%),
+      radial-gradient(circle at 80% 90%, rgba(65,151,203,0.35) 0%, rgba(65,151,203,0) 55%);
+  }
+  .split-art .iso-large {
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: 50%; height: 50%;
+  }
+  .split-art .grid-overlay {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+
+  /* ─────────── Portfolio ─────────── */
+  .portfolio { background: #fff; }
+  .featured-card {
+    margin-top: 56px;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: linear-gradient(135deg, #001a4d 0%, #00205C 60%, #1a3b75 100%);
+    color: #fff;
+    box-shadow: var(--shadow-lg);
+    position: relative;
+  }
+  .featured-card::before {
+    content: '';
+    position: absolute;
+    top: -50px; right: -50px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(65,151,203,0.4) 0%, rgba(65,151,203,0) 65%);
+    pointer-events: none;
+  }
+  .featured-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 0;
+    position: relative;
+    z-index: 1;
+  }
+  @media (max-width: 900px) { .featured-grid { grid-template-columns: 1fr; } }
+  .featured-content {
+    padding: 56px 60px;
+  }
+  @media (max-width: 720px) { .featured-content { padding: 40px 28px; } }
+  .featured-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: #b9d6ec;
+    margin-bottom: 22px;
+  }
+  .featured-tag::before {
+    content: '';
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--sky);
+    box-shadow: 0 0 0 4px rgba(65,151,203,0.25);
+  }
+  .featured-title {
+    font-size: clamp(36px, 4.5vw, 56px);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    margin: 0 0 8px;
+  }
+  .featured-cat {
+    font-size: 14px;
+    color: #9ab8d4;
+    margin-bottom: 22px;
+    font-weight: 500;
+  }
+  .featured-desc {
+    font-size: 17px;
+    line-height: 1.55;
+    color: rgba(255,255,255,0.85);
+    margin: 0 0 32px;
+    max-width: 50ch;
+    font-weight: 300;
+  }
+  .stats {
+    display: flex;
+    gap: 36px;
+    margin-bottom: 36px;
+    flex-wrap: wrap;
+  }
+  .stat-num {
+    font-size: 30px;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: -0.025em;
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 12.5px;
+    color: #9ab8d4;
+    margin-top: 6px;
+    letter-spacing: 0.02em;
+  }
+  .featured-visual {
+    position: relative;
+    background: linear-gradient(180deg, rgba(65,151,203,0.08), rgba(65,151,203,0.18));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 40px;
+  }
+  /* Phone mock representing SafePickup product */
+  .phone {
+    width: 240px;
+    aspect-ratio: 9/19;
+    background: #0a1430;
+    border-radius: 36px;
+    box-shadow:
+      0 0 0 8px #1a2240,
+      0 0 0 9px #2a3050,
+      0 30px 60px -15px rgba(0,0,0,0.5);
+    overflow: hidden;
+    position: relative;
+    transform: rotate(-3deg);
+  }
+  .phone::before {
+    /* notch */
+    content: '';
+    position: absolute;
+    top: 12px; left: 50%;
+    transform: translateX(-50%);
+    width: 80px; height: 22px;
+    background: #1a2240;
+    border-radius: 999px;
+    z-index: 3;
+  }
+  .phone-screen {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, #fafcff 0%, #eaf3fb 100%);
+    padding: 50px 18px 18px;
+    display: flex; flex-direction: column;
+    gap: 10px;
+  }
+  .phone-status {
+    text-align: center;
+    font-size: 9px;
+    font-weight: 700;
+    color: var(--navy);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .phone-card {
+    background: #fff;
+    border-radius: 14px;
+    padding: 12px;
+    box-shadow: 0 1px 3px rgba(0,32,92,0.08);
+    border: 1px solid #e6edf5;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .phone-card .avatar {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--sky), var(--navy));
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff;
+    font-weight: 800;
+    font-size: 12px;
+  }
+  .phone-card .meta { flex: 1; min-width: 0; }
+  .phone-card .name {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 2px;
+  }
+  .phone-card .sub {
+    font-size: 9px;
+    color: var(--gray);
+  }
+  .phone-card .pill {
+    font-size: 8.5px;
+    font-weight: 700;
+    padding: 3px 7px;
+    border-radius: 999px;
+    background: var(--sky-soft);
+    color: var(--sky);
+  }
+  .phone-card.live .pill {
+    background: #e6f7ec;
+    color: #1d8a4a;
+  }
+
+  /* Future portfolio slots */
+  .future-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 28px;
+  }
+  @media (max-width: 880px) { .future-grid { grid-template-columns: 1fr; } }
+  .future-card {
+    border: 1.5px dashed var(--gray-20);
+    border-radius: var(--radius-lg);
+    padding: 36px 28px;
+    text-align: center;
+    color: var(--gray);
+    background: #fff;
+    transition: border-color .2s, color .2s;
+  }
+  .future-card:hover { border-color: var(--sky); color: var(--sky); }
+  .future-icon {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: var(--gray-10);
+    display: inline-flex;
+    align-items: center; justify-content: center;
+    margin-bottom: 14px;
+  }
+  .future-card h4 {
+    font-size: 16px;
+    font-weight: 700;
+    color: inherit;
+    margin: 0 0 6px;
+    letter-spacing: -0.01em;
+  }
+  .future-card p {
+    font-size: 13.5px;
+    margin: 0;
+    color: var(--gray-60);
+  }
+
+  /* ─────────── About page sections ─────────── */
+  .about-section { background: var(--paper); border-top: 1px solid var(--gray-20); }
+  .mvv-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    margin-top: 50px;
+  }
+  @media (max-width: 800px) { .mvv-grid { grid-template-columns: 1fr; } }
+  .mvv-card {
+    background: #fff;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--gray-20);
+    padding: 38px 36px;
+  }
+  .mvv-card.dark {
+    background: var(--navy);
+    color: #fff;
+    border-color: var(--navy);
+  }
+  .mvv-card .label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--sky);
+    margin-bottom: 16px;
+  }
+  .mvv-card h3 {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin: 0 0 14px;
+    color: var(--navy);
+  }
+  .mvv-card.dark h3 { color: #fff; }
+  .mvv-card p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 0;
+    color: var(--gray);
+    font-weight: 300;
+  }
+  .mvv-card.dark p { color: rgba(255,255,255,0.85); }
+
+  /* Values list */
+  .values {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 18px;
+    margin-top: 32px;
+  }
+  @media (max-width: 1000px) { .values { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 600px) { .values { grid-template-columns: repeat(2, 1fr); } }
+  .value {
+    background: #fff;
+    border: 1px solid var(--gray-20);
+    border-radius: var(--radius);
+    padding: 22px 20px;
+    text-align: left;
+  }
+  .value-num {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--sky);
+    letter-spacing: 0.16em;
+    margin-bottom: 12px;
+  }
+  .value h4 {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--navy);
+    margin: 0 0 6px;
+    letter-spacing: -0.01em;
+  }
+  .value p {
+    font-size: 13px;
+    color: var(--gray);
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  /* Leadership */
+  .leaders {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    margin-top: 48px;
+  }
+  @media (max-width: 800px) { .leaders { grid-template-columns: 1fr; } }
+  .leader {
+    background: #fff;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--gray-20);
+    overflow: hidden;
+    display: flex;
+    transition: box-shadow .25s ease, transform .25s ease;
+  }
+  .leader:hover { box-shadow: var(--shadow-lg); transform: translateY(-3px); }
+  .leader-photo {
+    width: 160px;
+    flex-shrink: 0;
+    background: linear-gradient(135deg, var(--sky-soft), #d6e6f1);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--navy);
+    font-weight: 800;
+    font-size: 44px;
+    letter-spacing: -0.02em;
+  }
+  .leader-photo::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 30%, rgba(255,255,255,0.4) 0%, transparent 60%);
+  }
+  .leader-info {
+    padding: 28px 28px 24px;
+    flex: 1;
+    min-width: 0;
+  }
+  .leader-info .role {
+    font-size: 11.5px;
+    font-weight: 700;
+    color: var(--sky);
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    margin-bottom: 8px;
+  }
+  .leader-info h3 {
+    font-size: 21px;
+    font-weight: 800;
+    color: var(--navy);
+    margin: 0 0 10px;
+    letter-spacing: -0.02em;
+  }
+  .leader-info p {
+    font-size: 14px;
+    color: var(--gray);
+    margin: 0 0 14px;
+    line-height: 1.55;
+  }
+  .leader-info a.email {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--navy);
+    border-bottom: 1px solid var(--gray-20);
+    padding-bottom: 2px;
+    display: inline-block;
+    transition: border-color .2s, color .2s;
+  }
+  .leader-info a.email:hover { color: var(--sky); border-color: var(--sky); }
+  @media (max-width: 600px) {
+    .leader { flex-direction: column; }
+    .leader-photo { width: 100%; height: 180px; }
+  }
+
+  /* Corporate purpose */
+  .purpose {
+    margin-top: 60px;
+    padding: 38px 44px;
+    border-left: 3px solid var(--sky);
+    background: #fff;
+    border-radius: 0 var(--radius) var(--radius) 0;
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--gray);
+    font-weight: 300;
+    font-style: italic;
+  }
+
+  /* ─────────── Final CTA band ─────────── */
+  .cta-band {
+    background: var(--navy);
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-band::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 800px; height: 800px;
+    background: radial-gradient(circle, rgba(65,151,203,0.25) 0%, rgba(65,151,203,0) 60%);
+    pointer-events: none;
+  }
+  .cta-band .wrap { position: relative; z-index: 1; text-align: center; }
+  .cta-band h2 {
+    font-size: clamp(34px, 4.5vw, 60px);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    margin: 0 0 18px;
+    color: #fff;
+    max-width: 22ch;
+    margin-inline: auto;
+    text-wrap: balance;
+  }
+  .cta-band .subhead {
+    color: rgba(255,255,255,0.78);
+    margin: 0 auto 38px;
+    max-width: 56ch;
+  }
+
+  /* ─────────── Contact ─────────── */
+  .contact { background: #fff; }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 64px;
+    margin-top: 56px;
+  }
+  @media (max-width: 880px) { .contact-grid { grid-template-columns: 1fr; gap: 40px; } }
+
+  form .field { margin-bottom: 20px; }
+  form label {
+    display: block;
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--navy);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  form input,
+  form select,
+  form textarea {
+    width: 100%;
+    border: 1.5px solid var(--gray-20);
+    border-radius: var(--radius-sm);
+    padding: 14px 16px;
+    font-family: inherit;
+    font-size: 15px;
+    background: #fff;
+    color: var(--ink);
+    transition: border-color .2s, box-shadow .2s;
+  }
+  form input:focus,
+  form select:focus,
+  form textarea:focus {
+    outline: none;
+    border-color: var(--sky);
+    box-shadow: 0 0 0 4px rgba(65,151,203,0.15);
+  }
+  form textarea { resize: vertical; min-height: 130px; line-height: 1.55; }
+  form select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%2376777A' d='M6 8L0 0h12z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 18px center; padding-right: 40px; }
+  .row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  @media (max-width: 600px) { .row-2 { grid-template-columns: 1fr; } }
+
+  .checkbox {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 13.5px;
+    color: var(--gray);
+    line-height: 1.5;
+    cursor: pointer;
+  }
+  .checkbox input { width: 18px; height: 18px; margin-top: 2px; accent-color: var(--navy); }
+  .checkbox a { color: var(--navy); text-decoration: underline; text-underline-offset: 2px; }
+
+  .contact-side {
+    background: var(--paper);
+    border: 1px solid var(--gray-20);
+    border-radius: var(--radius-lg);
+    padding: 36px 32px;
+    align-self: start;
+  }
+  .contact-side h3 {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--navy);
+    letter-spacing: -0.01em;
+    margin: 0 0 8px;
+  }
+  .contact-side h3 + p {
+    font-size: 14px;
+    color: var(--gray);
+    margin: 0 0 28px;
+  }
+  .contact-item {
+    padding: 18px 0;
+    border-top: 1px solid var(--gray-20);
+  }
+  .contact-item:first-of-type { border-top: 0; padding-top: 0; }
+  .contact-item .name {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 4px;
+  }
+  .contact-item .role {
+    font-size: 12.5px;
+    color: var(--gray);
+    margin-bottom: 6px;
+  }
+  .contact-item a {
+    font-size: 14px;
+    color: var(--sky);
+    font-weight: 600;
+  }
+  .contact-item a:hover { text-decoration: underline; }
+  .location {
+    margin-top: 22px;
+    padding-top: 22px;
+    border-top: 1px solid var(--gray-20);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--gray);
+    font-size: 14px;
+  }
+  .location svg { color: var(--sky); flex-shrink: 0; }
+
+  /* ─────────── Footer ─────────── */
+  footer.site-footer {
+    background: #0a1430;
+    color: rgba(255,255,255,0.7);
+    padding: 80px 0 36px;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1fr 1fr;
+    gap: 48px;
+  }
+  @media (max-width: 880px) { .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; } }
+  @media (max-width: 520px) { .footer-grid { grid-template-columns: 1fr; } }
+  .footer-brand .tagline {
+    font-size: 14px;
+    color: rgba(255,255,255,0.55);
+    margin: 18px 0 0;
+    max-width: 36ch;
+    line-height: 1.6;
+  }
+  .footer-col h5 {
+    font-size: 11px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin: 0 0 18px;
+  }
+  .footer-col ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+  .footer-col a {
+    font-size: 14px;
+    color: rgba(255,255,255,0.78);
+    transition: color .15s;
+  }
+  .footer-col a:hover { color: var(--sky); }
+  .footer-bottom {
+    margin-top: 56px;
+    padding-top: 28px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 14px;
+    font-size: 12.5px;
+    color: rgba(255,255,255,0.5);
+  }
+  .socials { display: flex; gap: 10px; }
+  .socials a {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.06);
+    display: inline-flex;
+    align-items: center; justify-content: center;
+    color: rgba(255,255,255,0.65);
+    transition: background .2s, color .2s;
+  }
+  .socials a:hover { background: var(--sky); color: #fff; }
+
+  /* ─────────── Reveal-on-scroll ─────────── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity .7s ease, transform .7s ease;
+  }
+  .reveal.in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation-duration: 0.001s !important; transition-duration: 0.001s !important; scroll-behavior: auto; }
+    .reveal { opacity: 1; transform: none; }
+  }
+
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════
+     Reusable SVG: official-style isotype
+     Abstract "Z" formed by four diagonal strokes
+     enclosed in a square frame, tri-color config.
+     ═══════════════════════════════════════════════ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="iso" viewBox="0 0 100 100">
+      <!-- frame -->
+      <rect x="6" y="6" width="88" height="88" rx="4" fill="none" stroke="currentColor" stroke-width="6"/>
+      <!-- four diagonal strokes forming a Z -->
+      <g stroke-linecap="square" stroke-width="9" fill="none">
+        <line x1="22" y1="22" x2="78" y2="22" stroke="var(--iso-1, #00205C)"/>
+        <line x1="78" y1="32" x2="32" y2="78" stroke="var(--iso-2, #4197CB)"/>
+        <line x1="22" y1="78" x2="78" y2="78" stroke="var(--iso-3, #76777A)"/>
+        <line x1="68" y1="38" x2="40" y2="66" stroke="var(--iso-2, #4197CB)" opacity="0.0"/>
+      </g>
+    </symbol>
+    <symbol id="iso-mono" viewBox="0 0 100 100">
+      <rect x="6" y="6" width="88" height="88" rx="4" fill="none" stroke="currentColor" stroke-width="6"/>
+      <g stroke="currentColor" stroke-linecap="square" stroke-width="9" fill="none">
+        <line x1="22" y1="22" x2="78" y2="22"/>
+        <line x1="78" y1="32" x2="32" y2="78"/>
+        <line x1="22" y1="78" x2="78" y2="78"/>
+      </g>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- ─────────── HEADER ─────────── -->
+<header class="site-header" id="header">
+  <div class="wrap">
+    <nav class="nav" aria-label="Primary">
+      <a href="#home" class="logo" aria-label="grupozer — inicio">
+        <svg class="iso" viewBox="0 0 100 100" style="color: var(--gray)" aria-hidden="true"><use href="#iso"/></svg>
+        <span class="wordmark"><span class="grupo">grupo</span><span class="zer">zer</span></span>
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home" data-i18n="nav.home">Inicio</a></li>
+        <li><a href="#about" data-i18n="nav.about">Nosotros</a></li>
+        <li><a href="#portfolio" data-i18n="nav.portfolio">Portafolio</a></li>
+        <li><a href="#contact" data-i18n="nav.contact">Contacto</a></li>
+      </ul>
+
+      <div class="nav-right">
+        <div class="lang" role="group" aria-label="Language switcher">
+          <button data-lang="es" class="active" aria-pressed="true">SPA</button>
+          <button data-lang="en" aria-pressed="false">ENG</button>
+        </div>
+        <button class="menu-btn" id="menuBtn" aria-label="Menu" aria-expanded="false">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- ─────────── HERO ─────────── -->
+  <section class="hero" id="home">
+    <div class="wrap">
+      <div class="eyebrow" data-i18n="hero.eyebrow">Holding tecnológico dominicano</div>
+      <h1 class="headline">
+        <span class="light" data-i18n="hero.headlineLight">Tecnología que</span>
+        <span data-i18n="hero.headlineBold">simplifica lo cotidiano.</span>
+      </h1>
+      <p class="subhead" data-i18n="hero.subhead">En Grupo ZER diseñamos, desarrollamos y operamos soluciones digitales que transforman la manera en que personas y empresas resuelven sus necesidades del día a día.</p>
+      <div class="cta-row">
+        <a href="#portfolio" class="btn btn-primary">
+          <span data-i18n="hero.cta1">Conoce nuestro portafolio</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <a href="#contact" class="btn btn-secondary" data-i18n="hero.cta2">Contáctanos</a>
+      </div>
+    </div>
+
+    <!-- Hero side visual -->
+    <svg class="hero-visual" viewBox="0 0 460 460" aria-hidden="true">
+      <defs>
+        <linearGradient id="bigIsoG" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#00205C"/>
+          <stop offset="100%" stop-color="#1a3b75"/>
+        </linearGradient>
+      </defs>
+      <!-- floating frame echoing isotype -->
+      <rect x="40" y="40" width="380" height="380" rx="24" fill="none" stroke="#00205C" stroke-width="2" opacity="0.16"/>
+      <rect x="80" y="80" width="300" height="300" rx="18" fill="none" stroke="#4197CB" stroke-width="2" opacity="0.3"/>
+      <!-- Big Z strokes -->
+      <g stroke-linecap="square" stroke-width="34" fill="none" opacity="0.92">
+        <line x1="130" y1="135" x2="330" y2="135" stroke="url(#bigIsoG)"/>
+        <line x1="320" y1="160" x2="140" y2="320" stroke="#4197CB"/>
+        <line x1="130" y1="325" x2="330" y2="325" stroke="#76777A"/>
+      </g>
+      <!-- accent dots -->
+      <circle cx="395" cy="100" r="6" fill="#4197CB"/>
+      <circle cx="65" cy="380" r="4" fill="#00205C"/>
+    </svg>
+  </section>
+
+  <!-- ─────────── BRAND PILLARS ─────────── -->
+  <section id="pillars">
+    <div class="wrap">
+      <div class="reveal">
+        <div class="section-eyebrow" data-i18n="pillars.eyebrow">Lo que nos define</div>
+        <h2 class="section-title" data-i18n="pillars.title">Tres principios que guían cada decisión.</h2>
+        <p class="section-lede" data-i18n="pillars.lede">Innovación, agilidad y servicio. No son palabras decorativas — son los filtros con los que diseñamos, construimos y operamos cada producto del grupo.</p>
+      </div>
+
+      <div class="pillars">
+        <article class="pillar reveal">
+          <span class="pillar-num">01</span>
+          <div class="pillar-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9.663 17h4.673M12 3v1M5.6 5.6l.7.7M3 12h1M20 12h1M18.4 5.6l-.7.7"/><path d="M9 17a5 5 0 1 1 6 0c-1 .6-1.5 1.4-1.5 2.5V20a1.5 1.5 0 0 1-3 0v-.5c0-1.1-.5-1.9-1.5-2.5"/></svg>
+          </div>
+          <h3 data-i18n="pillars.p1.title">Innovación</h3>
+          <p data-i18n="pillars.p1.body">Aplicamos tecnología con propósito, creando productos que resuelven problemas reales de forma inteligente.</p>
+        </article>
+
+        <article class="pillar reveal">
+          <span class="pillar-num">02</span>
+          <div class="pillar-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          </div>
+          <h3 data-i18n="pillars.p2.title">Agilidad</h3>
+          <p data-i18n="pillars.p2.body">Nos movemos rápido. Iteramos, aprendemos y lanzamos soluciones que evolucionan al ritmo de nuestros usuarios.</p>
+        </article>
+
+        <article class="pillar reveal">
+          <span class="pillar-num">03</span>
+          <div class="pillar-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </div>
+          <h3 data-i18n="pillars.p3.title">Servicio</h3>
+          <p data-i18n="pillars.p3.body">El usuario está al centro de todo lo que hacemos. Confiabilidad y cercanía son parte de nuestra promesa.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────── ABOUT TEASER ─────────── -->
+  <section class="about-teaser" id="about">
+    <div class="wrap">
+      <div class="split">
+        <div class="split-art reveal" aria-hidden="true">
+          <div class="grid-overlay"></div>
+          <svg class="iso-large" viewBox="0 0 100 100" style="color: rgba(255,255,255,0.35); --iso-1: #fff; --iso-2: #4197CB; --iso-3: rgba(255,255,255,0.55);"><use href="#iso"/></svg>
+        </div>
+        <div class="reveal">
+          <div class="section-eyebrow" data-i18n="about.eyebrow">Quiénes somos</div>
+          <h2 class="section-title" data-i18n="about.title">Una empresa familiar dominicana, con propósito tecnológico.</h2>
+          <p class="section-lede" data-i18n="about.body" style="margin-bottom: 28px;">Grupo ZER es una empresa dominicana fundada con el propósito de acercar al mercado local productos y servicios de valor apalancados en la tecnología. Creamos, desarrollamos e implementamos soluciones digitales —web y móviles— dirigidas tanto a empresas como a personas físicas, con un enfoque en la simplicidad, la confiabilidad y la seguridad.</p>
+          <a href="#story" class="btn-ghost">
+            <span data-i18n="about.link">Conoce más sobre nosotros</span>
+            <span class="arrow">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────── ABOUT — Full story ─────────── -->
+  <section class="about-section" id="story">
+    <div class="wrap">
+      <div class="reveal" style="max-width: 760px;">
+        <div class="section-eyebrow" data-i18n="story.eyebrow">Nuestra historia</div>
+        <h2 class="section-title" data-i18n="story.title">Tres iniciales. Una visión familiar.</h2>
+        <p class="section-lede" data-i18n="story.body1" style="margin-bottom: 22px; color: var(--ink); font-weight: 400;">Grupo ZER es una empresa familiar dominicana fundada por dos profesionales con más de una década de experiencia en el sector bancario y tecnológico. Tras años buscando una idea de negocio que combinara propósito, innovación y verdadero impacto en la vida de las personas, la compañía nace con el objetivo de acercar soluciones tecnológicas al mercado local, simplificando procesos cotidianos a través de productos y servicios digitales.</p>
+        <p class="section-lede" data-i18n="story.body2">El nombre <strong style="color: var(--navy); font-weight: 700;">ZER</strong> proviene de las iniciales de las tres hijas de los fundadores — <strong style="color: var(--navy); font-weight: 700;">Z</strong>oe, <strong style="color: var(--navy); font-weight: 700;">E</strong>mma y <strong style="color: var(--navy); font-weight: 700;">R</strong>enata — y encapsula la visión de construir una familia de marcas, productos y servicios diseñados para generar valor en el día a día. Cada solución dentro del grupo se concibe como una extensión de esta promesa: tecnología útil, confiable y cercana.</p>
+      </div>
+
+      <!-- Mission & Vision -->
+      <div class="mvv-grid">
+        <article class="mvv-card reveal">
+          <div class="label" data-i18n="mvv.missionLabel">Misión</div>
+          <h3 data-i18n="mvv.missionTitle">Simplificar lo cotidiano.</h3>
+          <p data-i18n="mvv.missionBody">Diseñar, desarrollar e implementar soluciones digitales que simplifiquen la vida cotidiana de personas y empresas, con estándares de confiabilidad, seguridad y cercanía.</p>
+        </article>
+
+        <article class="mvv-card dark reveal">
+          <div class="label" data-i18n="mvv.visionLabel">Visión</div>
+          <h3 data-i18n="mvv.visionTitle">Ser referencia en el mercado dominicano.</h3>
+          <p data-i18n="mvv.visionBody">Ser el grupo tecnológico dominicano de referencia en la creación de marcas y productos digitales que transforman hábitos cotidianos y generan valor sostenible para el mercado.</p>
+        </article>
+      </div>
+
+      <!-- Values -->
+      <div class="reveal" style="margin-top: 70px;">
+        <div class="section-eyebrow" data-i18n="values.eyebrow">Valores</div>
+        <h2 class="section-title" style="font-size: clamp(26px, 3vw, 36px);" data-i18n="values.title">Lo que nos sostiene.</h2>
+      </div>
+      <div class="values">
+        <div class="value reveal"><div class="value-num">01</div><h4 data-i18n="values.v1.t">Innovación</h4><p data-i18n="values.v1.b">Aplicar tecnología con propósito.</p></div>
+        <div class="value reveal"><div class="value-num">02</div><h4 data-i18n="values.v2.t">Agilidad</h4><p data-i18n="values.v2.b">Iteración rápida y aprendizaje continuo.</p></div>
+        <div class="value reveal"><div class="value-num">03</div><h4 data-i18n="values.v3.t">Servicio</h4><p data-i18n="values.v3.b">Diseño centrado en el usuario.</p></div>
+        <div class="value reveal"><div class="value-num">04</div><h4 data-i18n="values.v4.t">Integridad</h4><p data-i18n="values.v4.b">Operación transparente y segura.</p></div>
+        <div class="value reveal"><div class="value-num">05</div><h4 data-i18n="values.v5.t">Familia</h4><p data-i18n="values.v5.b">El fundamento de todo lo que hacemos.</p></div>
+      </div>
+
+      <!-- Leadership -->
+      <div class="reveal" style="margin-top: 80px;">
+        <div class="section-eyebrow" data-i18n="leaders.eyebrow">Liderazgo</div>
+        <h2 class="section-title" style="font-size: clamp(26px, 3vw, 36px);" data-i18n="leaders.title">Los fundadores.</h2>
+      </div>
+      <div class="leaders">
+        <article class="leader reveal">
+          <div class="leader-photo" aria-hidden="true">NG</div>
+          <div class="leader-info">
+            <div class="role" data-i18n="leaders.role">Co-Founder</div>
+            <h3>Nazha Stephanie Giudicelli</h3>
+            <p data-i18n="leaders.l1">Business Administrator con amplia experiencia en el sector bancario dominicano. Lidera estrategia, operaciones y desarrollo comercial en Grupo ZER.</p>
+            <a class="email" href="mailto:ngiudicelli@zergrupo.com">ngiudicelli@zergrupo.com</a>
+          </div>
+        </article>
+        <article class="leader reveal">
+          <div class="leader-photo" aria-hidden="true">MP</div>
+          <div class="leader-info">
+            <div class="role" data-i18n="leaders.role">Co-Founder</div>
+            <h3>Miguel José Peña</h3>
+            <p data-i18n="leaders.l2">Ingeniero en Sistemas con profunda experiencia en el sector de tecnología financiera. Lidera producto, ingeniería y estrategia tecnológica en Grupo ZER.</p>
+            <a class="email" href="mailto:mjpena@zergrupo.com">mjpena@zergrupo.com</a>
+          </div>
+        </article>
+      </div>
+
+      <!-- Corporate purpose -->
+      <div class="reveal">
+        <div class="purpose">
+          <span data-i18n="purpose.body">Grupo ZER se dedica a la creación, desarrollo, implementación, comercialización y soporte de soluciones de servicios digitales, así como al desarrollo de aplicaciones web y móviles dirigidas tanto a empresas como a personas físicas.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────── PORTFOLIO ─────────── -->
+  <section class="portfolio" id="portfolio">
+    <div class="wrap">
+      <div class="reveal" style="max-width: 720px;">
+        <div class="section-eyebrow" data-i18n="portfolio.eyebrow">Nuestro portafolio</div>
+        <h2 class="section-title" data-i18n="portfolio.title">Marcas independientes. Una sola promesa.</h2>
+        <p class="section-lede" data-i18n="portfolio.body">En Grupo ZER creamos marcas independientes, cada una diseñada para resolver una necesidad específica con tecnología aplicada. Nuestro portafolio crece de manera intencional, añadiendo soluciones que cumplen con nuestros estándares de innovación, agilidad y servicio.</p>
+      </div>
+
+      <!-- Featured: SafePickup -->
+      <article class="featured-card reveal">
+        <div class="featured-grid">
+          <div class="featured-content">
+            <div class="featured-tag" data-i18n="portfolio.flagship">Producto insignia</div>
+            <h3 class="featured-title">SafePickup</h3>
+            <div class="featured-cat" data-i18n="portfolio.sp.cat">App móvil · Plataforma de logística escolar</div>
+            <p class="featured-desc" data-i18n="portfolio.sp.desc">SafePickup es la plataforma móvil que digitaliza y asegura el proceso de salida escolar, conectando a colegios, padres y tutores en tiempo real mediante geolocalización, notificaciones y control de autorizaciones.</p>
+
+            <div class="stats">
+              <div>
+                <div class="stat-num">15+</div>
+                <div class="stat-label" data-i18n="portfolio.sp.s1">Colegios activos</div>
+              </div>
+              <div>
+                <div class="stat-num">250K+</div>
+                <div class="stat-label" data-i18n="portfolio.sp.s2">Salidas facilitadas</div>
+              </div>
+              <div>
+                <div class="stat-num" data-i18n="portfolio.sp.s3num">En operación</div>
+                <div class="stat-label" data-i18n="portfolio.sp.s3">Estado comercial</div>
+              </div>
+            </div>
+
+            <a href="https://safepickup.app" target="_blank" rel="noopener" class="btn btn-accent">
+              <span data-i18n="portfolio.sp.cta">Visitar safepickup.app</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M7 17L17 7"/><polyline points="7 7 17 7 17 17"/></svg>
+            </a>
+          </div>
+          <div class="featured-visual" aria-hidden="true">
+            <div class="phone">
+              <div class="phone-screen">
+                <div class="phone-status" data-i18n="portfolio.sp.phone.status">Salida en vivo</div>
+                <div class="phone-card live">
+                  <div class="avatar">ZG</div>
+                  <div class="meta">
+                    <div class="name">Zoe G.</div>
+                    <div class="sub" data-i18n="portfolio.sp.phone.s1">Llegando · 2 min</div>
+                  </div>
+                  <div class="pill" data-i18n="portfolio.sp.phone.p1">EN RUTA</div>
+                </div>
+                <div class="phone-card">
+                  <div class="avatar" style="background: linear-gradient(135deg,#76777A,#1a3b75);">EM</div>
+                  <div class="meta">
+                    <div class="name">Emma M.</div>
+                    <div class="sub" data-i18n="portfolio.sp.phone.s2">Tutor autorizado</div>
+                  </div>
+                  <div class="pill" data-i18n="portfolio.sp.phone.p2">VERIFICADO</div>
+                </div>
+                <div class="phone-card">
+                  <div class="avatar" style="background: linear-gradient(135deg,#4197CB,#76777A);">RP</div>
+                  <div class="meta">
+                    <div class="name">Renata P.</div>
+                    <div class="sub" data-i18n="portfolio.sp.phone.s3">Entregada · 14:32</div>
+                  </div>
+                  <div class="pill" style="background:#e6f7ec;color:#1d8a4a" data-i18n="portfolio.sp.phone.p3">OK</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Future portfolio slots -->
+      <div class="reveal" style="margin-top: 80px;">
+        <h3 style="font-size: 14px; font-weight: 700; color: var(--gray); letter-spacing: 0.16em; text-transform: uppercase; margin: 0 0 24px;" data-i18n="portfolio.coming">Próximamente</h3>
+      </div>
+      <div class="future-grid">
+        <div class="future-card reveal">
+          <div class="future-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          </div>
+          <h4 data-i18n="portfolio.future.t">Próximamente</h4>
+          <p data-i18n="portfolio.future.b">Nuevo producto del grupo</p>
+        </div>
+        <div class="future-card reveal">
+          <div class="future-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          </div>
+          <h4 data-i18n="portfolio.future.t">Próximamente</h4>
+          <p data-i18n="portfolio.future.b">Nuevo producto del grupo</p>
+        </div>
+        <div class="future-card reveal">
+          <div class="future-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          </div>
+          <h4 data-i18n="portfolio.future.t">Próximamente</h4>
+          <p data-i18n="portfolio.future.b">Nuevo producto del grupo</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────── FINAL CTA ─────────── -->
+  <section class="cta-band">
+    <div class="wrap">
+      <h2 data-i18n="finalCta.title">¿Tienes una idea, una alianza o una oportunidad?</h2>
+      <p class="subhead" data-i18n="finalCta.body">Conversemos. Estamos construyendo el futuro digital del mercado dominicano, y nos encantaría hacerlo contigo.</p>
+      <a href="#contact" class="btn btn-accent" style="font-size: 16px; padding: 16px 32px;">
+        <span data-i18n="finalCta.cta">Escríbenos</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- ─────────── CONTACT ─────────── -->
+  <section class="contact" id="contact">
+    <div class="wrap">
+      <div class="reveal" style="max-width: 720px;">
+        <div class="section-eyebrow" data-i18n="contact.eyebrow">Contacto</div>
+        <h2 class="section-title" data-i18n="contact.title">Conversemos.</h2>
+        <p class="section-lede" data-i18n="contact.body">Ya sea que busques explorar una alianza, conocer más sobre nuestros productos o contactar a nuestro equipo, estamos a tu disposición. Completa el formulario o escríbenos directamente y te responderemos a la brevedad.</p>
+      </div>
+
+      <div class="contact-grid">
+        <form class="reveal" novalidate onsubmit="event.preventDefault(); alert(t('contact.thanks'));">
+          <div class="row-2">
+            <div class="field">
+              <label for="name" data-i18n="contact.f.name">Nombre completo</label>
+              <input id="name" name="name" type="text" required>
+            </div>
+            <div class="field">
+              <label for="email" data-i18n="contact.f.email">Correo electrónico</label>
+              <input id="email" name="email" type="email" required>
+            </div>
+          </div>
+          <div class="row-2">
+            <div class="field">
+              <label for="company" data-i18n="contact.f.company">Empresa <span style="color:var(--gray-60); font-weight:500; text-transform:none; letter-spacing:0;">(opcional)</span></label>
+              <input id="company" name="company" type="text">
+            </div>
+            <div class="field">
+              <label for="subject" data-i18n="contact.f.subject">Asunto</label>
+              <select id="subject" name="subject" required>
+                <option value="general" data-i18n="contact.f.s1">Consulta general</option>
+                <option value="partnership" data-i18n="contact.f.s2">Alianza</option>
+                <option value="media" data-i18n="contact.f.s3">Medios</option>
+                <option value="product" data-i18n="contact.f.s4">Pregunta sobre producto</option>
+                <option value="other" data-i18n="contact.f.s5">Otro</option>
+              </select>
+            </div>
+          </div>
+          <div class="field">
+            <label for="message" data-i18n="contact.f.message">Mensaje</label>
+            <textarea id="message" name="message" required></textarea>
+          </div>
+          <div class="field">
+            <label class="checkbox" style="text-transform:none; letter-spacing:0; font-weight:400; font-size:13.5px; color: var(--gray);">
+              <input type="checkbox" required>
+              <span data-i18n="contact.f.consent">Acepto la <a href="#privacy">política de privacidad</a> y autorizo el tratamiento de mis datos para responder a esta consulta.</span>
+            </label>
+          </div>
+          <button type="submit" class="btn btn-primary" style="margin-top: 8px;">
+            <span data-i18n="contact.f.submit">Enviar mensaje</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          </button>
+        </form>
+
+        <aside class="contact-side reveal">
+          <h3 data-i18n="contact.side.title">Contacto directo</h3>
+          <p data-i18n="contact.side.body">Escríbenos directamente a nuestros correos corporativos.</p>
+
+          <div class="contact-item">
+            <div class="name">Nazha Stephanie Giudicelli</div>
+            <div class="role" data-i18n="leaders.role">Co-Founder</div>
+            <a href="mailto:ngiudicelli@zergrupo.com">ngiudicelli@zergrupo.com</a>
+          </div>
+          <div class="contact-item">
+            <div class="name">Miguel José Peña</div>
+            <div class="role" data-i18n="leaders.role">Co-Founder</div>
+            <a href="mailto:mjpena@zergrupo.com">mjpena@zergrupo.com</a>
+          </div>
+          <div class="location">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span data-i18n="contact.side.loc">Santo Domingo, República Dominicana</span>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ─────────── FOOTER ─────────── -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#home" class="logo" aria-label="grupozer">
+          <svg class="iso" viewBox="0 0 100 100" style="color: rgba(255,255,255,0.7); --iso-1:#fff; --iso-2:#4197CB; --iso-3: rgba(255,255,255,0.55);" aria-hidden="true"><use href="#iso"/></svg>
+          <span class="wordmark reverse"><span class="grupo">grupo</span><span class="zer">zer</span></span>
+        </a>
+        <p class="tagline" data-i18n="footer.tagline">Grupo ZER — Tecnología que simplifica lo cotidiano.</p>
+      </div>
+
+      <div class="footer-col">
+        <h5 data-i18n="footer.nav">Navegación</h5>
+        <ul>
+          <li><a href="#home" data-i18n="nav.home">Inicio</a></li>
+          <li><a href="#about" data-i18n="nav.about">Nosotros</a></li>
+          <li><a href="#portfolio" data-i18n="nav.portfolio">Portafolio</a></li>
+          <li><a href="#contact" data-i18n="nav.contact">Contacto</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5 data-i18n="footer.portfolio">Portafolio</h5>
+        <ul>
+          <li><a href="https://safepickup.app" target="_blank" rel="noopener">SafePickup ↗</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5 data-i18n="footer.contact">Contacto</h5>
+        <ul>
+          <li><a href="mailto:ngiudicelli@zergrupo.com">ngiudicelli@zergrupo.com</a></li>
+          <li><a href="mailto:mjpena@zergrupo.com">mjpena@zergrupo.com</a></li>
+          <li style="color: rgba(255,255,255,0.5); font-size: 14px;"><span data-i18n="contact.side.loc">Santo Domingo, República Dominicana</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div data-i18n="footer.copy">© 2026 Grupo ZER. Todos los derechos reservados.</div>
+      <div style="display:flex; gap:24px; align-items:center;">
+        <div style="display:flex; gap:18px;">
+          <a href="#privacy" data-i18n="footer.privacy">Política de privacidad</a>
+          <a href="#terms" data-i18n="footer.terms">Términos de uso</a>
+        </div>
+        <div class="socials" aria-label="Social">
+          <a href="#" aria-label="LinkedIn"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+          <a href="#" aria-label="Twitter"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ─────────── i18n + interactions ─────────── -->
+<script>
+  // ───────── Translation table ─────────
+  const I18N = {
+    es: {
+      'nav.home': 'Inicio',
+      'nav.about': 'Nosotros',
+      'nav.portfolio': 'Portafolio',
+      'nav.contact': 'Contacto',
+
+      'hero.eyebrow': 'Holding tecnológico dominicano',
+      'hero.headlineLight': 'Tecnología que',
+      'hero.headlineBold': 'simplifica lo cotidiano.',
+      'hero.subhead': 'En Grupo ZER diseñamos, desarrollamos y operamos soluciones digitales que transforman la manera en que personas y empresas resuelven sus necesidades del día a día.',
+      'hero.cta1': 'Conoce nuestro portafolio',
+      'hero.cta2': 'Contáctanos',
+
+      'pillars.eyebrow': 'Lo que nos define',
+      'pillars.title': 'Tres principios que guían cada decisión.',
+      'pillars.lede': 'Innovación, agilidad y servicio. No son palabras decorativas — son los filtros con los que diseñamos, construimos y operamos cada producto del grupo.',
+      'pillars.p1.title': 'Innovación',
+      'pillars.p1.body': 'Aplicamos tecnología con propósito, creando productos que resuelven problemas reales de forma inteligente.',
+      'pillars.p2.title': 'Agilidad',
+      'pillars.p2.body': 'Nos movemos rápido. Iteramos, aprendemos y lanzamos soluciones que evolucionan al ritmo de nuestros usuarios.',
+      'pillars.p3.title': 'Servicio',
+      'pillars.p3.body': 'El usuario está al centro de todo lo que hacemos. Confiabilidad y cercanía son parte de nuestra promesa.',
+
+      'about.eyebrow': 'Quiénes somos',
+      'about.title': 'Una empresa familiar dominicana, con propósito tecnológico.',
+      'about.body': 'Grupo ZER es una empresa dominicana fundada con el propósito de acercar al mercado local productos y servicios de valor apalancados en la tecnología. Creamos, desarrollamos e implementamos soluciones digitales —web y móviles— dirigidas tanto a empresas como a personas físicas, con un enfoque en la simplicidad, la confiabilidad y la seguridad.',
+      'about.link': 'Conoce más sobre nosotros',
+
+      'story.eyebrow': 'Nuestra historia',
+      'story.title': 'Tres iniciales. Una visión familiar.',
+      'story.body1': 'Grupo ZER es una empresa familiar dominicana fundada por dos profesionales con más de una década de experiencia en el sector bancario y tecnológico. Tras años buscando una idea de negocio que combinara propósito, innovación y verdadero impacto en la vida de las personas, la compañía nace con el objetivo de acercar soluciones tecnológicas al mercado local, simplificando procesos cotidianos a través de productos y servicios digitales.',
+      'story.body2': 'El nombre <strong style="color: var(--navy); font-weight: 700;">ZER</strong> proviene de las iniciales de las tres hijas de los fundadores — <strong style="color: var(--navy); font-weight: 700;">Z</strong>oe, <strong style="color: var(--navy); font-weight: 700;">E</strong>mma y <strong style="color: var(--navy); font-weight: 700;">R</strong>enata — y encapsula la visión de construir una familia de marcas, productos y servicios diseñados para generar valor en el día a día. Cada solución dentro del grupo se concibe como una extensión de esta promesa: tecnología útil, confiable y cercana.',
+
+      'mvv.missionLabel': 'Misión',
+      'mvv.missionTitle': 'Simplificar lo cotidiano.',
+      'mvv.missionBody': 'Diseñar, desarrollar e implementar soluciones digitales que simplifiquen la vida cotidiana de personas y empresas, con estándares de confiabilidad, seguridad y cercanía.',
+      'mvv.visionLabel': 'Visión',
+      'mvv.visionTitle': 'Ser referencia en el mercado dominicano.',
+      'mvv.visionBody': 'Ser el grupo tecnológico dominicano de referencia en la creación de marcas y productos digitales que transforman hábitos cotidianos y generan valor sostenible para el mercado.',
+
+      'values.eyebrow': 'Valores',
+      'values.title': 'Lo que nos sostiene.',
+      'values.v1.t': 'Innovación', 'values.v1.b': 'Aplicar tecnología con propósito.',
+      'values.v2.t': 'Agilidad',   'values.v2.b': 'Iteración rápida y aprendizaje continuo.',
+      'values.v3.t': 'Servicio',   'values.v3.b': 'Diseño centrado en el usuario.',
+      'values.v4.t': 'Integridad', 'values.v4.b': 'Operación transparente y segura.',
+      'values.v5.t': 'Familia',    'values.v5.b': 'El fundamento de todo lo que hacemos.',
+
+      'leaders.eyebrow': 'Liderazgo',
+      'leaders.title': 'Los fundadores.',
+      'leaders.role': 'Co-Founder',
+      'leaders.l1': 'Business Administrator con amplia experiencia en el sector bancario dominicano. Lidera estrategia, operaciones y desarrollo comercial en Grupo ZER.',
+      'leaders.l2': 'Ingeniero en Sistemas con profunda experiencia en el sector de tecnología financiera. Lidera producto, ingeniería y estrategia tecnológica en Grupo ZER.',
+
+      'purpose.body': 'Grupo ZER se dedica a la creación, desarrollo, implementación, comercialización y soporte de soluciones de servicios digitales, así como al desarrollo de aplicaciones web y móviles dirigidas tanto a empresas como a personas físicas.',
+
+      'portfolio.eyebrow': 'Nuestro portafolio',
+      'portfolio.title': 'Marcas independientes. Una sola promesa.',
+      'portfolio.body': 'En Grupo ZER creamos marcas independientes, cada una diseñada para resolver una necesidad específica con tecnología aplicada. Nuestro portafolio crece de manera intencional, añadiendo soluciones que cumplen con nuestros estándares de innovación, agilidad y servicio.',
+      'portfolio.flagship': 'Producto insignia',
+      'portfolio.sp.cat': 'App móvil · Plataforma de logística escolar',
+      'portfolio.sp.desc': 'SafePickup es la plataforma móvil que digitaliza y asegura el proceso de salida escolar, conectando a colegios, padres y tutores en tiempo real mediante geolocalización, notificaciones y control de autorizaciones.',
+      'portfolio.sp.s1': 'Colegios activos',
+      'portfolio.sp.s2': 'Salidas facilitadas',
+      'portfolio.sp.s3num': 'En operación',
+      'portfolio.sp.s3': 'Estado comercial',
+      'portfolio.sp.cta': 'Visitar safepickup.app',
+      'portfolio.sp.phone.status': 'Salida en vivo',
+      'portfolio.sp.phone.s1': 'Llegando · 2 min',
+      'portfolio.sp.phone.p1': 'EN RUTA',
+      'portfolio.sp.phone.s2': 'Tutor autorizado',
+      'portfolio.sp.phone.p2': 'VERIFICADO',
+      'portfolio.sp.phone.s3': 'Entregada · 14:32',
+      'portfolio.sp.phone.p3': 'OK',
+      'portfolio.coming': 'Próximamente',
+      'portfolio.future.t': 'Próximamente',
+      'portfolio.future.b': 'Nuevo producto del grupo',
+
+      'finalCta.title': '¿Tienes una idea, una alianza o una oportunidad?',
+      'finalCta.body': 'Conversemos. Estamos construyendo el futuro digital del mercado dominicano, y nos encantaría hacerlo contigo.',
+      'finalCta.cta': 'Escríbenos',
+
+      'contact.eyebrow': 'Contacto',
+      'contact.title': 'Conversemos.',
+      'contact.body': 'Ya sea que busques explorar una alianza, conocer más sobre nuestros productos o contactar a nuestro equipo, estamos a tu disposición. Completa el formulario o escríbenos directamente y te responderemos a la brevedad.',
+      'contact.f.name': 'Nombre completo',
+      'contact.f.email': 'Correo electrónico',
+      'contact.f.company': 'Empresa <span style="color:var(--gray-60); font-weight:500; text-transform:none; letter-spacing:0;">(opcional)</span>',
+      'contact.f.subject': 'Asunto',
+      'contact.f.s1': 'Consulta general',
+      'contact.f.s2': 'Alianza',
+      'contact.f.s3': 'Medios',
+      'contact.f.s4': 'Pregunta sobre producto',
+      'contact.f.s5': 'Otro',
+      'contact.f.message': 'Mensaje',
+      'contact.f.consent': 'Acepto la <a href="#privacy">política de privacidad</a> y autorizo el tratamiento de mis datos para responder a esta consulta.',
+      'contact.f.submit': 'Enviar mensaje',
+      'contact.thanks': '¡Gracias! Hemos recibido tu mensaje y te responderemos a la brevedad.',
+      'contact.side.title': 'Contacto directo',
+      'contact.side.body': 'Escríbenos directamente a nuestros correos corporativos.',
+      'contact.side.loc': 'Santo Domingo, República Dominicana',
+
+      'footer.tagline': 'Grupo ZER — Tecnología que simplifica lo cotidiano.',
+      'footer.nav': 'Navegación',
+      'footer.portfolio': 'Portafolio',
+      'footer.contact': 'Contacto',
+      'footer.copy': '© 2026 Grupo ZER. Todos los derechos reservados.',
+      'footer.privacy': 'Política de privacidad',
+      'footer.terms': 'Términos de uso',
+
+      '__title': 'grupozer — Tecnología que simplifica lo cotidiano',
+      '__desc': 'Grupo ZER — empresa dominicana que diseña, desarrolla y opera soluciones digitales que simplifican la vida cotidiana de personas y empresas.'
+    },
+
+    en: {
+      'nav.home': 'Home',
+      'nav.about': 'About',
+      'nav.portfolio': 'Portfolio',
+      'nav.contact': 'Contact',
+
+      'hero.eyebrow': 'Dominican technology holding',
+      'hero.headlineLight': 'Technology that',
+      'hero.headlineBold': 'simplifies everyday life.',
+      'hero.subhead': 'At Grupo ZER we design, develop, and operate digital solutions that transform the way people and businesses solve their everyday needs.',
+      'hero.cta1': 'Explore our portfolio',
+      'hero.cta2': 'Get in touch',
+
+      'pillars.eyebrow': 'What defines us',
+      'pillars.title': 'Three principles that guide every decision.',
+      'pillars.lede': 'Innovation, agility, and service. Not decorative words — they are the filters through which we design, build, and operate every product in the group.',
+      'pillars.p1.title': 'Innovation',
+      'pillars.p1.body': 'We apply purposeful technology, building products that intelligently solve real-world problems.',
+      'pillars.p2.title': 'Agility',
+      'pillars.p2.body': 'We move fast. We iterate, learn, and ship solutions that evolve at the pace of our users.',
+      'pillars.p3.title': 'Service',
+      'pillars.p3.body': 'The user is at the center of everything we do. Reliability and closeness are part of our promise.',
+
+      'about.eyebrow': 'Who we are',
+      'about.title': 'A Dominican family-owned company, with technological purpose.',
+      'about.body': 'Grupo ZER is a Dominican company founded with the purpose of bringing high-value technology-driven products and services to the local market. We create, develop, and deploy digital solutions —both web and mobile— for enterprises and individual consumers, with a focus on simplicity, reliability, and security.',
+      'about.link': 'Learn more about us',
+
+      'story.eyebrow': 'Our story',
+      'story.title': 'Three initials. One family vision.',
+      'story.body1': 'Grupo ZER is a Dominican family-owned company founded by two professionals with over a decade of combined experience in the banking and technology sectors. After years searching for a business idea that would combine purpose, innovation, and real impact on people\'s lives, the company was born with the goal of bringing technology solutions to the local market, simplifying everyday processes through digital products and services.',
+      'story.body2': 'The name <strong style="color: var(--navy); font-weight: 700;">ZER</strong> comes from the initials of the founders\' three daughters — <strong style="color: var(--navy); font-weight: 700;">Z</strong>oe, <strong style="color: var(--navy); font-weight: 700;">E</strong>mma, and <strong style="color: var(--navy); font-weight: 700;">R</strong>enata — and encapsulates the vision of building a family of brands, products, and services designed to create value in everyday life. Each solution within the group is conceived as an extension of this promise: useful, reliable, and approachable technology.',
+
+      'mvv.missionLabel': 'Mission',
+      'mvv.missionTitle': 'Simplify the everyday.',
+      'mvv.missionBody': 'To design, develop, and deploy digital solutions that simplify the everyday lives of people and businesses, upheld by standards of reliability, security, and closeness.',
+      'mvv.visionLabel': 'Vision',
+      'mvv.visionTitle': 'To become the Dominican benchmark.',
+      'mvv.visionBody': 'To become the leading Dominican technology group in the creation of digital brands and products that transform everyday habits and generate sustainable value in the market.',
+
+      'values.eyebrow': 'Values',
+      'values.title': 'What sustains us.',
+      'values.v1.t': 'Innovation', 'values.v1.b': 'Applying technology with purpose.',
+      'values.v2.t': 'Agility',    'values.v2.b': 'Fast iteration and continuous learning.',
+      'values.v3.t': 'Service',    'values.v3.b': 'User-centered design.',
+      'values.v4.t': 'Integrity',  'values.v4.b': 'Transparent and secure operations.',
+      'values.v5.t': 'Family',     'values.v5.b': 'The foundation of everything we do.',
+
+      'leaders.eyebrow': 'Leadership',
+      'leaders.title': 'The founders.',
+      'leaders.role': 'Co-Founder',
+      'leaders.l1': 'Business Administrator with extensive experience in the Dominican banking sector. Leads strategy, operations, and commercial development at Grupo ZER.',
+      'leaders.l2': 'Systems Engineer with deep expertise in the financial technology sector. Leads product, engineering, and technology strategy at Grupo ZER.',
+
+      'purpose.body': 'Grupo ZER is dedicated to the creation, development, implementation, commercialization, and support of digital service solutions, as well as to the development of web and mobile applications for both businesses and individuals.',
+
+      'portfolio.eyebrow': 'Our portfolio',
+      'portfolio.title': 'Independent brands. One promise.',
+      'portfolio.body': 'At Grupo ZER we build independent brands, each designed to address a specific need through applied technology. Our portfolio grows deliberately, adding solutions that meet our standards of innovation, agility, and service.',
+      'portfolio.flagship': 'Flagship product',
+      'portfolio.sp.cat': 'Mobile app · School logistics platform',
+      'portfolio.sp.desc': 'SafePickup is the mobile platform that digitizes and secures the school dismissal process, connecting schools, parents, and guardians in real time through geolocation, notifications, and guardian authorization.',
+      'portfolio.sp.s1': 'Active schools',
+      'portfolio.sp.s2': 'Pickups facilitated',
+      'portfolio.sp.s3num': 'Live',
+      'portfolio.sp.s3': 'Operational status',
+      'portfolio.sp.cta': 'Visit safepickup.app',
+      'portfolio.sp.phone.status': 'Live dismissal',
+      'portfolio.sp.phone.s1': 'Arriving · 2 min',
+      'portfolio.sp.phone.p1': 'EN ROUTE',
+      'portfolio.sp.phone.s2': 'Authorized guardian',
+      'portfolio.sp.phone.p2': 'VERIFIED',
+      'portfolio.sp.phone.s3': 'Delivered · 14:32',
+      'portfolio.sp.phone.p3': 'OK',
+      'portfolio.coming': 'Coming soon',
+      'portfolio.future.t': 'Coming soon',
+      'portfolio.future.b': 'New product from the group',
+
+      'finalCta.title': 'Have an idea, a partnership, or an opportunity?',
+      'finalCta.body': 'Let\'s talk. We are building the digital future of the Dominican market, and we would love to do it with you.',
+      'finalCta.cta': 'Get in touch',
+
+      'contact.eyebrow': 'Contact',
+      'contact.title': 'Let\'s talk.',
+      'contact.body': 'Whether you are exploring a partnership, want to learn more about our products, or need to reach our team, we are here for you. Fill out the form below or write to us directly and we will get back to you promptly.',
+      'contact.f.name': 'Full name',
+      'contact.f.email': 'Email',
+      'contact.f.company': 'Company <span style="color:var(--gray-60); font-weight:500; text-transform:none; letter-spacing:0;">(optional)</span>',
+      'contact.f.subject': 'Subject',
+      'contact.f.s1': 'General inquiry',
+      'contact.f.s2': 'Partnership',
+      'contact.f.s3': 'Media',
+      'contact.f.s4': 'Product question',
+      'contact.f.s5': 'Other',
+      'contact.f.message': 'Message',
+      'contact.f.consent': 'I accept the <a href="#privacy">privacy policy</a> and authorize the processing of my data to respond to this inquiry.',
+      'contact.f.submit': 'Send message',
+      'contact.thanks': 'Thank you! We have received your message and will get back to you promptly.',
+      'contact.side.title': 'Direct contact',
+      'contact.side.body': 'Write to us directly at our corporate emails.',
+      'contact.side.loc': 'Santo Domingo, Dominican Republic',
+
+      'footer.tagline': 'Grupo ZER — Technology that simplifies everyday life.',
+      'footer.nav': 'Navigation',
+      'footer.portfolio': 'Portfolio',
+      'footer.contact': 'Contact',
+      'footer.copy': '© 2026 Grupo ZER. All rights reserved.',
+      'footer.privacy': 'Privacy Policy',
+      'footer.terms': 'Terms of Use',
+
+      '__title': 'grupozer — Technology that simplifies everyday life',
+      '__desc': 'Grupo ZER — a Dominican company that designs, develops, and operates digital solutions that simplify the everyday lives of people and businesses.'
+    }
+  };
+
+  let currentLang = localStorage.getItem('grupozer-lang') || 'es';
+  function t(key) { return (I18N[currentLang] && I18N[currentLang][key]) || I18N.es[key] || key; }
+
+  function applyLang(lang) {
+    currentLang = lang;
+    localStorage.setItem('grupozer-lang', lang);
+    document.documentElement.lang = lang;
+    // Update meta
+    document.title = t('__title');
+    const desc = document.querySelector('meta[name=description]');
+    if (desc) desc.setAttribute('content', t('__desc'));
+
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      const val = t(key);
+      // Allow inline HTML for keys that contain it
+      if (/[<>]/.test(val)) el.innerHTML = val;
+      else el.textContent = val;
+    });
+
+    // Lang switcher visual state
+    document.querySelectorAll('.lang button').forEach(b => {
+      const active = b.dataset.lang === lang;
+      b.classList.toggle('active', active);
+      b.setAttribute('aria-pressed', active);
+    });
+  }
+
+  document.querySelectorAll('.lang button').forEach(btn => {
+    btn.addEventListener('click', () => applyLang(btn.dataset.lang));
+  });
+
+  // ───────── Header scroll state ─────────
+  const header = document.getElementById('header');
+  const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 8);
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // ───────── Mobile menu ─────────
+  const menuBtn = document.getElementById('menuBtn');
+  const navLinks = document.getElementById('navLinks');
+  menuBtn.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', open);
+  });
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+  // ───────── Reveal on scroll ─────────
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // ───────── Init ─────────
+  applyLang(currentLang);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,481 @@
+grupozer
+Website Design & Development Specification
+Corporate Website — Holding Company
+Prepared for: Claude Design
+Production domain: zergrupo.com
+Staging domain: staging.zergrupo.com
+
+
+## [Heading1] 1. Project Overview
+This document defines the scope, content, structure, and design requirements for the new corporate website of Grupo ZER, a Dominican holding company dedicated to the creation, development, implementation, commercialization, and support of digital service solutions. The site will serve as the institutional front-door for the holding company and will showcase its product portfolio, of which SafePickup is the flagship offering.
+Reference documents: This specification must be read together with the official brand identity manual (GrupoZER_ManualDeIdentidad), which is the canonical source of truth for the logo, wordmark, color system, typography, and prohibited uses. Where this document and the identity manual overlap, the identity manual prevails on all visual matters.
+
+## [Heading3] 1.1 Objectives
+Establish a professional, modern online presence for Grupo ZER as a holding company — clearly differentiated from its individual product brands.
+Position the company as a technology-driven group with a scalable portfolio of digital products and services.
+Showcase SafePickup as the flagship product within the portfolio, with a direct link to safepickup.app.
+Support bilingual visitors (Spanish and English) through a fully integrated language switcher.
+Provide a foundation that can accommodate additional products, brands, and content as the portfolio grows.
+
+## [Heading3] 1.2 Target Audience
+Young professional adults between 24 and 40 years of age, as well as institutional stakeholders such as potential partners, corporate clients, investors, and media.
+
+## [Heading3] 1.3 Brand Attributes
+Three words that should guide every design and copy decision:
+Innovation — forward-thinking technology applied to everyday life.
+Agility — nimble execution, rapid iteration, and responsive service.
+Service — a customer-centric philosophy applied across every touchpoint.
+
+## [Heading3] 1.4 Unique Value Proposition
+Grupo ZER delivers flexible, reliable, and secure technology solutions that address everyday needs, simplifying the way people and businesses interact with essential daily processes.
+
+
+## [Heading1] 2. Deliverables and Environments
+Two environments must be provisioned and deployed:
+Environment
+Domain
+Purpose
+Staging
+staging.zergrupo.com
+Pre-production environment for testing, QA, and stakeholder review prior to release.
+Production
+zergrupo.com
+Public-facing production environment once the site has been approved.
+
+The deployment workflow must allow content and design changes to be validated in staging before being promoted to production.
+
+## [Heading1] 3. Bilingual Requirement
+The entire website must be fully bilingual, supporting Spanish (SPA) and English (ENG). Requirements:
+A visible language switcher must be available in the header on every page, clearly labeled as SPA / ENG.
+Spanish is the default language for visitors arriving from the Dominican Republic; English should be available for international visitors.
+URLs should use a clean language prefix structure (e.g., /es/ and /en/) to preserve SEO value in both languages.
+All static content, metadata, alt text, and form labels must be translated. No content may remain untranslated in either language.
+The language preference should persist across navigation and, ideally, be remembered on the visitor's next visit.
+
+
+## [Heading1] 4. Sitemap and Site Structure
+The website will follow a single-page-with-sections layout on the homepage, complemented by dedicated pages where depth is warranted. The sitemap is as follows:
+
+## [Heading3] 4.1 Primary Navigation
+Home (Inicio)
+About Us (Nosotros)
+Portfolio (Portafolio)
+Contact (Contacto)
+Language switcher (SPA / ENG)
+
+## [Heading3] 4.2 Pages and Sections
+Home / Inicio — includes hero section, brand pillars, portfolio preview, about teaser, and call-to-action.
+About Us / Nosotros — company story, founding team, mission, vision, and values.
+Portfolio / Portafolio — complete product listing, with SafePickup as the featured flagship entry.
+Contact / Contacto — contact form, corporate emails, and general inquiry channel.
+
+
+## [Heading1] 5. Homepage Content (Refined Copy)
+All copy below has been refined to professional, investor-grade tone. It is provided in Spanish and English. Designers and developers should use this copy verbatim unless editorial adjustments are agreed upon.
+
+## [Heading2] 5.1 Header
+Persistent across all pages. Contains: Grupo ZER logo (left), primary navigation (center or right), language switcher (far right).
+
+## [Heading2] 5.2 Hero Section — Above the Fold
+
+## [Heading3] Spanish
+Headline: Tecnología que simplifica lo cotidiano.
+Subheadline: En Grupo ZER diseñamos, desarrollamos y operamos soluciones digitales que transforman la manera en que personas y empresas resuelven sus necesidades del día a día.
+Primary CTA: Conoce nuestro portafolio
+Secondary CTA: Contáctanos
+
+## [Heading3] English
+Headline: Technology that simplifies everyday life.
+Subheadline: At Grupo ZER we design, develop, and operate digital solutions that transform the way people and businesses solve their everyday needs.
+Primary CTA: Explore our portfolio
+Secondary CTA: Get in touch
+
+## [Heading2] 5.3 Brand Pillars Section
+A three-column section that visualizes the brand attributes. Each column should include an icon, a title, and a short descriptive paragraph.
+Innovation / Innovación
+Agility / Agilidad
+Service / Servicio
+ES: Aplicamos tecnología con propósito, creando productos que resuelven problemas reales de forma inteligente.
+
+EN: We apply purposeful technology, building products that intelligently solve real-world problems.
+ES: Nos movemos rápido. Iteramos, aprendemos y lanzamos soluciones que evolucionan al ritmo de nuestros usuarios.
+
+EN: We move fast. We iterate, learn, and ship solutions that evolve at the pace of our users.
+ES: El usuario está al centro de todo lo que hacemos. Confiabilidad y cercanía son parte de nuestra promesa.
+
+EN: The user is at the center of everything we do. Reliability and closeness are part of our promise.
+
+
+## [Heading2] 5.4 About Teaser (Quién somos)
+
+## [Heading3] Spanish
+Section title: Quiénes somos
+Grupo ZER es una empresa dominicana fundada con el propósito de acercar al mercado local productos y servicios de valor apalancados en la tecnología. Creamos, desarrollamos e implementamos soluciones digitales —web y móviles— dirigidas tanto a empresas como a personas físicas, con un enfoque en la simplicidad, la confiabilidad y la seguridad.
+Link: Conoce más sobre nosotros →
+
+## [Heading3] English
+Section title: Who we are
+Grupo ZER is a Dominican company founded with the purpose of bringing high-value technology-driven products and services to the local market. We create, develop, and deploy digital solutions —both web and mobile— for enterprises and individual consumers, with a focus on simplicity, reliability, and security.
+Link: Learn more about us →
+
+## [Heading2] 5.5 Portfolio Preview
+Homepage teaser of the full portfolio section. Display the SafePickup card as the featured flagship product, with a clear path to the complete Portfolio page.
+
+## [Heading3] Spanish
+Section title: Nuestro portafolio
+Un ecosistema creciente de marcas y soluciones diseñadas para simplificar la vida cotidiana.
+
+## [Heading3] English
+Section title: Our portfolio
+A growing ecosystem of brands and solutions designed to simplify everyday life.
+
+## [Heading2] 5.6 Final Call-to-Action
+
+## [Heading3] Spanish
+Headline: ¿Tienes una idea, una alianza o una oportunidad?
+Subheadline: Conversemos. Estamos construyendo el futuro digital del mercado dominicano, y nos encantaría hacerlo contigo.
+CTA button: Escríbenos
+
+## [Heading3] English
+Headline: Have an idea, a partnership, or an opportunity?
+Subheadline: Let's talk. We are building the digital future of the Dominican market, and we would love to do it with you.
+CTA button: Get in touch
+
+
+## [Heading1] 6. About Us Page (Refined Copy)
+
+## [Heading2] 6.1 Company Story
+
+## [Heading3] Spanish
+Section title: Nuestra historia
+Grupo ZER es una empresa familiar dominicana fundada por dos profesionales con más de una década de experiencia en el sector bancario y tecnológico. Tras años buscando una idea de negocio que combinara propósito, innovación y verdadero impacto en la vida de las personas, la compañía nace con el objetivo de acercar soluciones tecnológicas al mercado local, simplificando procesos cotidianos a través de productos y servicios digitales.
+El nombre ZER proviene de las iniciales de las tres hijas de los fundadores — Zoe, Emma y Renata — y encapsula la visión de construir una familia de marcas, productos y servicios diseñados para generar valor en el día a día. Cada solución dentro del grupo se concibe como una extensión de esta promesa: tecnología útil, confiable y cercana.
+
+## [Heading3] English
+Section title: Our story
+Grupo ZER is a Dominican family-owned company founded by two professionals with over a decade of combined experience in the banking and technology sectors. After years searching for a business idea that would combine purpose, innovation, and real impact on people's lives, the company was born with the goal of bringing technology solutions to the local market, simplifying everyday processes through digital products and services.
+The name ZER comes from the initials of the founders' three daughters — Zoe, Emma, and Renata — and encapsulates the vision of building a family of brands, products, and services designed to create value in everyday life. Each solution within the group is conceived as an extension of this promise: useful, reliable, and approachable technology.
+
+## [Heading2] 6.2 Mission, Vision, and Values
+
+## [Heading3] Mission — Misión
+ES: Diseñar, desarrollar e implementar soluciones digitales que simplifiquen la vida cotidiana de personas y empresas, con estándares de confiabilidad, seguridad y cercanía.
+EN: To design, develop, and deploy digital solutions that simplify the everyday lives of people and businesses, upheld by standards of reliability, security, and closeness.
+
+## [Heading3] Vision — Visión
+ES: Ser el grupo tecnológico dominicano de referencia en la creación de marcas y productos digitales que transforman hábitos cotidianos y generan valor sostenible para el mercado.
+EN: To become the leading Dominican technology group in the creation of digital brands and products that transform everyday habits and generate sustainable value in the market.
+
+## [Heading3] Values — Valores
+Innovation / Innovación — a commitment to applying technology with purpose.
+Agility / Agilidad — fast iteration, continuous learning, and responsive execution.
+Service / Servicio — user-centered design and operational excellence.
+Integrity / Integridad — transparent, secure, and trustworthy operations.
+Family / Familia — the foundation of the company, reflected in how we treat our team, partners, and users.
+
+## [Heading2] 6.3 Leadership
+A section introducing the co-founders. Designers may use a clean two-card layout with placeholder photography; both founders should have their corporate email clearly displayed.
+Co-Founder
+Co-Founder
+Nazha Stephanie Giudicelli
+Co-Founder
+ngiudicelli@zergrupo.com
+Business Administrator with extensive experience in the Dominican banking sector. Leads strategy, operations, and commercial development at Grupo ZER.
+Miguel José Peña
+Co-Founder
+mjpena@zergrupo.com
+Systems Engineer with deep expertise in the financial technology sector. Leads product, engineering, and technology strategy at Grupo ZER.
+
+
+## [Heading2] 6.4 Corporate Purpose (Legal Description)
+A concise paragraph summarizing the company's formal corporate scope, adapted from the constitutional documents:
+ES: Grupo ZER se dedica a la creación, desarrollo, implementación, comercialización y soporte de soluciones de servicios digitales, así como al desarrollo de aplicaciones web y móviles dirigidas tanto a empresas como a personas físicas.
+EN: Grupo ZER is dedicated to the creation, development, implementation, commercialization, and support of digital service solutions, as well as to the development of web and mobile applications for both businesses and individuals.
+
+
+## [Heading1] 7. Portfolio Page (Refined Copy)
+The Portfolio page is a cornerstone of the site. It must be designed to scale gracefully as additional products are added to the group. SafePickup is the flagship and, at launch, the only product listed.
+
+## [Heading2] 7.1 Page Intro
+
+## [Heading3] Spanish
+Section title: Nuestro portafolio
+En Grupo ZER creamos marcas independientes, cada una diseñada para resolver una necesidad específica con tecnología aplicada. Nuestro portafolio crece de manera intencional, añadiendo soluciones que cumplen con nuestros estándares de innovación, agilidad y servicio.
+
+## [Heading3] English
+Section title: Our portfolio
+At Grupo ZER we build independent brands, each designed to address a specific need through applied technology. Our portfolio grows deliberately, adding solutions that meet our standards of innovation, agility, and service.
+
+## [Heading2] 7.2 SafePickup — Featured Product Card
+Design direction: the SafePickup entry should be presented as a hero-style card or banner (significantly larger and more visually prominent than future portfolio items), reflecting its role as the group's flagship product.
+Product name
+SafePickup
+Category
+Mobile app / School logistics platform
+Website
+safepickup.app
+Short description (ES)
+SafePickup es la plataforma móvil que digitaliza y asegura el proceso de salida escolar, conectando a colegios, padres y tutores en tiempo real mediante geolocalización, notificaciones y control de autorizaciones.
+Short description (EN)
+SafePickup is the mobile platform that digitizes and secures the school dismissal process, connecting schools, parents, and guardians in real time through geolocation, notifications, and guardian authorization.
+Status
+In commercial operation — 15+ active schools, 250,000+ child pickups facilitated
+CTA (ES / EN)
+Visitar safepickup.app → / Visit safepickup.app →
+
+
+## [Heading2] 7.3 Future Portfolio Slots
+The Portfolio page layout must include an extensible grid pattern for future additions. Recommended approach: a responsive card grid (3 columns desktop, 2 tablet, 1 mobile). Each future card should have: product logo, short tagline, one-line description, category tag, and an external link to the product site.
+A visible placeholder card labeled Coming soon / Próximamente may be included at launch to signal that the portfolio is actively growing, but this is optional at the discretion of the design team.
+
+
+## [Heading1] 8. Contact Page (Refined Copy)
+
+## [Heading2] 8.1 Intro Copy
+
+## [Heading3] Spanish
+Section title: Conversemos
+Ya sea que busques explorar una alianza, conocer más sobre nuestros productos o contactar a nuestro equipo, estamos a tu disposición. Completa el formulario o escríbenos directamente y te responderemos a la brevedad.
+
+## [Heading3] English
+Section title: Let's talk
+Whether you are exploring a partnership, want to learn more about our products, or need to reach our team, we are here for you. Fill out the form below or write to us directly and we will get back to you promptly.
+
+## [Heading2] 8.2 Contact Form Fields
+Full name / Nombre completo (required)
+Email / Correo electrónico (required)
+Company / Empresa (optional)
+Subject / Asunto — dropdown: General inquiry, Partnership, Media, Product question, Other
+Message / Mensaje (required)
+Consent checkbox / Casilla de consentimiento for privacy policy (required)
+
+## [Heading2] 8.3 Direct Contact
+Display a clean block with the following corporate emails:
+Nazha Stephanie Giudicelli — ngiudicelli@zergrupo.com
+Miguel José Peña — mjpena@zergrupo.com
+Location / Ubicación: Santo Domingo, República Dominicana
+
+
+## [Heading1] 9. Footer
+The footer should be consistent across all pages and include:
+Grupo ZER logo and short one-line description (ES/EN).
+Quick navigation links: Home, About, Portfolio, Contact.
+Portfolio quick links: SafePickup (safepickup.app).
+Contact column: corporate emails, city.
+Legal: copyright notice, Privacy Policy, Terms of Use.
+Optional: social media icons (placeholders accepted at launch).
+
+## [Heading3] Footer copy
+ES: Grupo ZER — Tecnología que simplifica lo cotidiano.
+EN: Grupo ZER — Technology that simplifies everyday life.
+Copyright: © 2026 Grupo ZER. Todos los derechos reservados. / All rights reserved.
+
+## [Heading1] 10. Required Website Components
+The following elements must be present across the website, as per standard best practices for a modern corporate site:
+Component
+Purpose
+Header
+Consistent branding and navigation across every page.
+Main navigation menu
+Helps visitors find sections quickly: Home, About, Portfolio, Contact.
+Language switcher
+SPA / ENG toggle, visible on every page.
+Hero / Above-the-fold
+Immediately captures attention with headline, subheadline, and primary CTA.
+Logo
+Represents brand identity and builds recognition.
+Content sections
+Main information blocks — text, media, resources — organized around the three brand pillars.
+Call-to-action (CTA)
+Encourages visitors to take key actions such as exploring the portfolio or contacting the team.
+Portfolio section
+Lists Grupo ZER's products, with SafePickup as the featured flagship.
+Contact form
+Captures visitor information and inquiries.
+Footer
+Secondary navigation, contact information, legal links, and social icons.
+Blog (future-ready)
+Scaffold a blog section for future use (SEO, updates, thought leadership). Does not need to be populated at launch.
+
+
+## [Heading1] 11. Visual Identity and Design System
+The visual identity of Grupo ZER is defined in the official brand identity manual (GrupoZER_ManualDeIdentidad), which must be delivered to the design team alongside this specification. All website design decisions must adhere strictly to that manual. This section summarizes the most relevant rules for web implementation.
+
+## [Heading2] 11.1 Brand Name and Wordmark
+The brand is expressed as a single wordmark: grupozer — written as one word, in lowercase, with a deliberate typographic contrast between the two syllables:
+"grupo" — set in Fontanella ExtraLight, rendered in Cool Gray (Pantone Cool Gray 9 C).
+"zer" — set in Fontanella ExtraBold, rendered in Navy (Pantone 281 C).
+This visual contrast is a signature element of the brand and must be preserved in every appearance of the wordmark on the website, including the header logo, footer, meta tags, favicon, Open Graph images, and any other marketing surface.
+Writing convention: In formal body copy and legal language, the company name may be written as "Grupo ZER" for readability. In all branded expressions (logo, hero headlines, decorative typography), the lowercase wordmark "grupozer" is the only authorized form.
+
+## [Heading2] 11.2 Logo — Official Variants
+The official logo combines the isotype (an abstract "Z" formed by four diagonal strokes enclosed in a square frame, in a tri-color configuration) with the grupozer wordmark. Two approved layouts exist:
+Horizontal — isotype on the left, wordmark to the right. This is the primary version and must be used for the website header, footer, email signatures, and standard marketing.
+Vertical — isotype stacked on top of the wordmark. Reserved for square layouts (social media profile pictures, app icons, narrow mobile elements where the horizontal version does not fit cleanly).
+
+## [Heading2] 11.3 Logo — Approved Color Variations
+The brand manual authorizes only the following logo color treatments. No other variations are permitted:
+Full color (tri-color): isotype using navy, sky blue, and cool gray strokes; wordmark with "grupo" in gray and "zer" in navy. This is the default version and should be used on white or very light backgrounds.
+Monochrome Navy: entire logo in Pantone 281 C.
+Monochrome Sky Blue: entire logo in Pantone 7688 C.
+Monochrome Cool Gray: entire logo in Pantone Cool Gray 9 C.
+Monochrome Black: entire logo in black — for single-color print applications or high-contrast scenarios.
+Reversed (white): entire logo in white — for use on navy, sky blue, gray, or black backgrounds.
+The design team must request the official vector files (SVG/AI/EPS) of every variation from the founders before implementation. Logos must never be re-drawn, re-colored, or reconstructed.
+
+## [Heading2] 11.4 Prohibited Logo Uses
+The following treatments are explicitly forbidden by the brand manual. The design team must not introduce any of these, whether on the website or in any future marketing asset derived from it:
+Applying colors outside the official palette (e.g., red, green, purple) to the logo.
+Applying gradients, shadows, outlines, or any visual effect to the logo.
+Altering the proportions of the isotype or wordmark (stretching, squashing, skewing).
+Displaying the logo at sizes where it becomes illegible (see minimum size guidance below).
+Rearranging the internal elements of the logo (e.g., placing the isotype to the right of the wordmark).
+Placing the logo over busy backgrounds, photography with low contrast, or patterns that compromise its legibility.
+
+## [Heading2] 11.5 Clear Space and Minimum Size (Web)
+To preserve logo legibility and visual integrity on the web, the following rules apply:
+Clear space: maintain a minimum safe area around the logo equal to the height of the isotype on all sides. No text, graphics, or edges should intrude into this area.
+Minimum size (horizontal logo): 120 px wide on desktop, 100 px wide on mobile.
+Minimum size (isotype alone): 32 px, used for favicons and compact navigation elements.
+Favicon: use the isotype (abstract Z mark) in full color on transparent background, with additional optimized renders at 16px, 32px, 180px (Apple touch icon), and 512px (PWA).
+
+## [Heading2] 11.6 Color Palette
+The brand palette is built on three core colors, directly drawn from the official identity manual. These must be used consistently across the site. The navy (Pantone 281 C) is the primary institutional color; the sky blue (Pantone 7688 C) is the accent/interaction color; the cool gray (Pantone Cool Gray 9 C) is the neutral used for body copy and secondary UI.
+Role
+Pantone
+CMYK
+RGB / HEX
+Primary (Navy)
+Pantone 281 C
+100 / 90.2 / 31.33 / 34.72
+RGB 0, 32, 92 — #00205C
+Accent (Sky Blue)
+Pantone 7688 C
+70.88 / 28.35 / 4.11 / 0
+RGB 65, 151, 203 — #4197CB
+Neutral (Cool Gray)
+Pantone Cool Gray 9 C
+55.71 / 46.51 / 43.74 / 10.48
+RGB 118, 119, 122 — #76777A
+
+
+## [Heading2] 11.7 Typography
+The brand typefaces are Fontanella ExtraLight and Fontanella ExtraBold, as specified in the identity manual. The deliberate contrast between these two weights is central to the brand's visual voice.
+If Fontanella licensing is not feasible at launch, the design team must select a free alternative that closely mirrors Fontanella's character — a humanist/geometric sans with a clear tonal contrast between its ultra-light and extra-bold weights, open letterforms, and warm typographic feel. Once selected, it must be used consistently across all typographic elements in both Spanish and English.
+
+## [Heading3] Recommended free alternatives
+Manrope (Google Fonts) — geometric sans with excellent weight range, closest visual match to Fontanella.
+Inter (Google Fonts) — neutral, highly legible, strong fallback for UI.
+Poppins (Google Fonts) — geometric, modern, widely used and well-supported.
+Final choice should be confirmed during design review. Whatever is selected must be used consistently across headings, body copy, buttons, and UI elements, in both Spanish and English.
+
+## [Heading3] Typographic hierarchy
+H1 / Hero headline: ExtraBold — large display size. Use the brand's dual-weight signature where appropriate (e.g., light descriptor + bold emphasis).
+H2 / Section titles: ExtraBold — medium display size.
+H3 / Subsections: ExtraBold or Bold — smaller.
+Body copy: Regular or ExtraLight — optimized for on-screen readability. For long-form text, avoid weights below Regular to preserve legibility on lower-density displays.
+Buttons / UI: Bold or ExtraBold — sentence case preferred over all caps for a modern, approachable feel.
+
+## [Heading2] 11.8 Imagery
+Until final photography and brand assets are available, the site should use high-quality placeholder imagery that reflects the brand's positioning: modern, technological, human-centered. Avoid generic stock clichés. Preferred directions include:
+Editorial, lifestyle-style photography depicting everyday moments augmented by technology.
+Abstract digital/geometric graphics using the navy and sky-blue palette.
+Product mockups (particularly for SafePickup, shown on mobile devices).
+
+## [Heading2] 11.9 Iconography
+Use a single, consistent icon family (e.g., Lucide, Phosphor, or Heroicons). Icons should be simple, line-based, and rendered in the brand accent color (sky blue) or cool gray depending on context. The weight/stroke of the icons should visually harmonize with the linear, stroke-based isotype of the brand.
+
+
+## [Heading1] 12. UX, Technical, and Performance Requirements
+
+## [Heading2] 12.1 Look and Feel
+Modern, professional, and confidence-inspiring — appropriate for an institutional holding company that will engage clients, partners, and potential investors.
+Clean layouts with generous white space and clear visual hierarchy.
+Subtle motion (fade-ins, parallax, micro-interactions) to add polish without distraction.
+Intuitive navigation — no visitor should need more than three clicks to reach any piece of information.
+
+## [Heading2] 12.2 Responsive Design
+The site must be fully responsive and provide an excellent experience on desktop, tablet, and mobile. Mobile-first design principles should guide the layout decisions.
+
+## [Heading2] 12.3 Performance
+Target Largest Contentful Paint (LCP) under 2.5 seconds on 4G.
+Target Cumulative Layout Shift (CLS) under 0.1.
+Images must be served in modern formats (WebP/AVIF) with responsive sizes.
+All assets should be compressed and cached properly.
+
+## [Heading2] 12.4 Accessibility
+WCAG 2.1 AA compliance target.
+Proper semantic HTML, ARIA labels where required.
+Sufficient color contrast for all text (the brand navy and gray comfortably pass).
+Full keyboard navigation support.
+
+## [Heading2] 12.5 SEO
+Unique meta titles and descriptions for every page, in both languages.
+hreflang tags to properly signal Spanish/English variants.
+Structured data (Organization schema) on the homepage.
+Clean URL structure: zergrupo.com/es/, zergrupo.com/en/, with proper canonical tags.
+Sitemap.xml and robots.txt.
+
+## [Heading2] 12.6 Analytics and Tracking
+Google Analytics 4 (or equivalent) installed on both staging and production.
+Cookie consent banner, compliant with applicable privacy regulations.
+Event tracking on primary CTAs, contact form submissions, and outbound clicks to safepickup.app.
+
+## [Heading2] 12.7 Legal Pages
+Privacy Policy (ES / EN)
+Terms of Use (ES / EN)
+Cookie Policy (ES / EN)
+Initial drafts may use placeholder text; final legal review will be coordinated separately.
+
+
+## [Heading1] 13. Suggested Technical Stack
+The following is a recommended stack. Final decisions will be made jointly with the design/development team based on maintainability and long-term flexibility.
+Frontend framework: Next.js (React) or Astro — both support excellent performance, SEO, and internationalization (i18n).
+Styling: Tailwind CSS with a brand-specific configuration (custom colors, typography scale).
+Internationalization: next-intl or Astro's built-in i18n, with Spanish as default locale.
+Content management: lightweight headless CMS (e.g., Sanity, Contentful, or a simple Markdown-based approach) so non-technical stakeholders can update copy over time.
+Forms: integrated with an email service (e.g., Resend, Postmark, or SMTP) and delivered to ngiudicelli@zergrupo.com and mjpena@zergrupo.com.
+Hosting: Vercel or Netlify, with automatic deploys from the git repository (staging branch → staging.zergrupo.com; main branch → zergrupo.com).
+DNS and SSL: to be configured on both domains.
+
+
+## [Heading1] 14. Deliverables Checklist
+The following deliverables are expected from the design and development team:
+
+## [Heading3] Design
+High-fidelity mockups for desktop and mobile of all primary pages (Home, About, Portfolio, Contact), in both Spanish and English.
+Component library / mini design system including typography, buttons, forms, cards, navigation — all aligned to the identity manual.
+Request and receive the official logo asset package from the founders (SVG/AI/EPS for all approved color variations: full color, monochrome navy, monochrome sky, monochrome gray, monochrome black, reversed/white).
+Favicon and PWA icon set generated from the official isotype.
+Final typography choice documented and confirmed in writing.
+
+## [Heading3] Development
+Fully responsive implementation of all pages.
+Language switcher with persistent state.
+Working contact form delivering to the corporate emails.
+Staging deployment on staging.zergrupo.com.
+Production deployment on zergrupo.com once approved.
+Documentation: README covering local development, deployment, and content updates.
+
+## [Heading3] Quality Assurance
+Cross-browser testing: Chrome, Safari, Firefox, Edge.
+Device testing: iOS Safari, Android Chrome, iPad.
+Accessibility audit (Lighthouse, axe-core).
+Performance audit (Lighthouse — target 90+ scores).
+SEO audit covering meta tags, hreflang, sitemap, structured data.
+
+
+## [Heading1] 15. Project Contacts
+For any questions, clarifications, or approvals related to this specification, please contact the founders directly:
+Name
+Role
+Email
+Nazha Stephanie Giudicelli
+Co-Founder
+ngiudicelli@zergrupo.com
+Miguel José Peña
+Co-Founder
+mjpena@zergrupo.com
+
+
+End of specification — Grupo ZER corporate website
