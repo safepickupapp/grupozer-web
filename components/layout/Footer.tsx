@@ -28,7 +28,7 @@ export async function Footer() {
             <h4 className="text-[11px] uppercase tracking-wider text-white/50 mb-4">{t("footer.portfolio")}</h4>
             <ul className="space-y-2">
               <li><Link href={`/${locale}/portfolio`} className="text-sm text-white/70 hover:text-white">{t("nav.portfolio")}</Link></li>
-              <li><a href="https://safepickup.app" target="_blank" rel="noopener noreferrer" className="text-sm text-white/70 hover:text-white">SafePickup</a></li>
+              <li><a href="https://safepickup.app" target="_blank" rel="noopener noreferrer" className="text-sm text-white/70 hover:text-white">Safe Pick Up</a></li>
             </ul>
           </div>
           {/* Contact */}

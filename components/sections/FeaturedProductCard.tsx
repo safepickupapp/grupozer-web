@@ -13,7 +13,7 @@ export async function FeaturedProductCard() {
           <div className="flex flex-col lg:flex-row items-center gap-10 p-10 lg:p-14">
             <div className="flex-1">
               <p className="text-xs font-semibold uppercase tracking-[0.15em] text-sky mb-3">{t("flagship")}</p>
-              <h3 className="text-h2 font-extrabold text-white mb-2">SafePickup</h3>
+              <h3 className="text-h2 font-extrabold text-white mb-2">Safe Pick Up</h3>
               <p className="text-xs text-white/50 mb-4">{t("sp.cat")}</p>
               <p className="text-lede text-white/70 leading-relaxed">{t("sp.desc")}</p>
               <div className="flex flex-wrap gap-6 mt-8 mb-8">
