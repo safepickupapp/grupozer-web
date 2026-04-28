@@ -74,28 +74,20 @@
     "title": "Independent brands. One promise.",
     "body": "At Grupo ZER we build independent brands, each designed to address a specific need through applied technology. Our portfolio grows deliberately, adding solutions that meet our standards of innovation, agility, and service.",
     "flagship": "Flagship product",
-    "coming": "Coming soon",
     "sp": {
       "cat": "Mobile app · School logistics platform",
-      "desc": "SafePickup is the mobile platform that digitizes and secures the school dismissal process, connecting schools, parents, and guardians in real time through geolocation, notifications, and guardian authorization.",
+      "desc": "Safe Pick Up is the mobile platform that digitizes and secures the school dismissal process, connecting schools, parents, and guardians in real time through geolocation, notifications, and guardian authorization.",
       "s1": "Active schools",
       "s2": "Pickups facilitated",
       "s3num": "Live",
       "s3": "Operational status",
       "cta": "Visit safepickup.app",
-      "phone": {
-        "status": "Live dismissal",
-        "s1": "Arriving · 2 min",
-        "p1": "EN ROUTE",
-        "s2": "Authorized guardian",
-        "p2": "VERIFIED",
-        "s3": "Delivered · 14:32",
-        "p3": "OK"
+      "app": {
+        "guardian": "/safepickup/safepickup-guardian-en.png",
+        "admin": "/safepickup/safepickup-admin-en.png",
+        "guardianAlt": "Safe Pick Up — Guardian view",
+        "adminAlt": "Safe Pick Up — School admin view"
       }
-    },
-    "future": {
-      "t": "Coming soon",
-      "b": "New product from the group"
     }
   },
   "finalCta": {
@@ -124,7 +116,8 @@
     },
     "side": {
       "title": "Direct contact",
-      "body": "Write to us directly at our corporate emails.",
+      "body": "Write to us at our corporate email.",
+      "generalLabel": "General email",
       "loc": "Santo Domingo, Dominican Republic"
     }
   },

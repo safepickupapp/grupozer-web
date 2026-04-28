@@ -74,28 +74,20 @@
     "title": "Marcas independientes. Una sola promesa.",
     "body": "En Grupo ZER creamos marcas independientes, cada una diseñada para resolver una necesidad específica con tecnología aplicada. Nuestro portafolio crece de manera intencional, añadiendo soluciones que cumplen con nuestros estándares de innovación, agilidad y servicio.",
     "flagship": "Producto insignia",
-    "coming": "Próximamente",
     "sp": {
       "cat": "App móvil · Plataforma de logística escolar",
-      "desc": "SafePickup es la plataforma móvil que digitaliza y asegura el proceso de salida escolar, conectando a colegios, padres y tutores en tiempo real mediante geolocalización, notificaciones y control de autorizaciones.",
+      "desc": "Safe Pick Up es la plataforma móvil que digitaliza y asegura el proceso de salida escolar, conectando a colegios, padres y tutores en tiempo real mediante geolocalización, notificaciones y control de autorizaciones.",
       "s1": "Colegios activos",
       "s2": "Salidas facilitadas",
       "s3num": "En operación",
       "s3": "Estado comercial",
       "cta": "Visitar safepickup.app",
-      "phone": {
-        "status": "Salida en vivo",
-        "s1": "Llegando · 2 min",
-        "p1": "EN RUTA",
-        "s2": "Tutor autorizado",
-        "p2": "VERIFICADO",
-        "s3": "Entregada · 14:32",
-        "p3": "OK"
+      "app": {
+        "guardian": "/safepickup/safepickup-guardian-es.png",
+        "admin": "/safepickup/safepickup-admin-es.png",
+        "guardianAlt": "Safe Pick Up — Vista del tutor",
+        "adminAlt": "Safe Pick Up — Vista de administrador"
       }
-    },
-    "future": {
-      "t": "Próximamente",
-      "b": "Nuevo producto del grupo"
     }
   },
   "finalCta": {
@@ -124,7 +116,8 @@
     },
     "side": {
       "title": "Contacto directo",
-      "body": "Escríbenos directamente a nuestros correos corporativos.",
+      "body": "Escríbenos a nuestro correo corporativo.",
+      "generalLabel": "Correo general",
       "loc": "Santo Domingo, República Dominicana"
     }
   },

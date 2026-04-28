@@ -14,7 +14,7 @@ const isoSizeMap = { sm: 32, md: 36, lg: 40 };
 export function Logo({ size = "lg", reverse = false, locale = "es", className = "" }: LogoProps) {
   return (
     <Link href={`/${locale}`} className={`inline-flex items-center gap-3 ${className}`}>
-      <Isotype size={isoSizeMap[size]} variant={reverse ? "mono" : "full"} color={reverse ? "#fff" : undefined} />
+      <Isotype size={isoSizeMap[size]} color={reverse ? "#fff" : "#00205C"} />
       <Wordmark size={size} reverse={reverse} />
     </Link>
   );

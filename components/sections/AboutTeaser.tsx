@@ -14,7 +14,7 @@ export async function AboutTeaser() {
       <Container>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="bg-navy rounded-lg aspect-[4/3] flex items-center justify-center">
-            <Isotype size={80} variant="mono" color="rgba(255,255,255,0.12)" />
+            <Isotype size={80} color="rgba(255,255,255,0.12)" />
           </div>
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.15em] text-sky mb-4">{t("eyebrow")}</p>

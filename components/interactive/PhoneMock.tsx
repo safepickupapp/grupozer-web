@@ -1,34 +1,30 @@
+import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 
-export async function PhoneMock() {
-  const t = await getTranslations("portfolio.sp.phone");
+export async function AppScreenshots() {
+  const t = await getTranslations("portfolio.sp.app");
 
   return (
-    <div className="w-[240px] shrink-0">
-      <div className="relative bg-white rounded-[24px] shadow-lg p-3 aspect-[9/19] flex flex-col">
-        <div className="bg-gray-10 rounded-[16px] flex-1 p-4 flex flex-col justify-between">
-          <div>
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-              <span className="text-[10px] font-bold text-navy uppercase tracking-wider">{t("status")}</span>
-            </div>
-            <div className="space-y-3">
-              <div className="bg-white rounded-sm p-3 shadow-sm">
-                <p className="text-[10px] text-gray">{t("s1")}</p>
-                <p className="text-xs font-bold text-sky">{t("p1")}</p>
-              </div>
-              <div className="bg-white rounded-sm p-3 shadow-sm">
-                <p className="text-[10px] text-gray">{t("s2")}</p>
-                <p className="text-xs font-bold text-green-600">{t("p2")}</p>
-              </div>
-              <div className="bg-white rounded-sm p-3 shadow-sm">
-                <p className="text-[10px] text-gray">{t("s3")}</p>
-                <p className="text-xs font-bold text-navy">{t("p3")}</p>
-              </div>
-            </div>
-          </div>
-          <div className="h-1 w-1/3 mx-auto bg-gray-20 rounded-full mt-2" />
-        </div>
+    <div className="relative w-[280px] h-[400px] shrink-0 max-lg:mx-auto">
+      {/* Back phone - admin view */}
+      <div className="absolute left-0 top-4 w-[200px] rounded-[38px] overflow-hidden shadow-lg opacity-80 -rotate-[9deg] border-[7px] border-gray-10">
+        <Image
+          src={t("admin")}
+          alt={t("adminAlt")}
+          width={400}
+          height={800}
+          className="w-full h-auto"
+        />
+      </div>
+      {/* Front phone - guardian view */}
+      <div className="absolute right-0 top-0 w-[200px] rounded-[38px] overflow-hidden shadow-lg rotate-[5deg] border-[7px] border-gray-10 z-10">
+        <Image
+          src={t("guardian")}
+          alt={t("guardianAlt")}
+          width={400}
+          height={800}
+          className="w-full h-auto"
+        />
       </div>
     </div>
   );

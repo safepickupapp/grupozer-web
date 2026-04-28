@@ -36,7 +36,7 @@ export async function Footer() {
             <h4 className="text-[11px] uppercase tracking-wider text-white/50 mb-4">{t("footer.contact")}</h4>
             <ul className="space-y-2">
               <li><Link href={`/${locale}/contact`} className="text-sm text-white/70 hover:text-white">{t("nav.contact")}</Link></li>
-              <li><a href="mailto:mjpena@zergrupo.com" className="text-sm text-white/70 hover:text-white">mjpena@zergrupo.com</a></li>
+              <li><a href="mailto:info@zergrupo.com" className="text-sm text-white/70 hover:text-white">info@zergrupo.com</a></li>
             </ul>
           </div>
         </div>

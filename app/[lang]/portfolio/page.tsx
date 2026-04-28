@@ -2,7 +2,6 @@ import { setRequestLocale, getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
 import { PortfolioIntro } from "@/components/sections/PortfolioIntro";
 import { FeaturedProductCard } from "@/components/sections/FeaturedProductCard";
-import { FuturePortfolioGrid } from "@/components/sections/FuturePortfolioGrid";
 import { RevealOnScroll } from "@/components/interactive/RevealOnScroll";
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
@@ -28,7 +27,6 @@ export default async function PortfolioPage({ params }: { params: Promise<{ lang
     <main>
       <RevealOnScroll><PortfolioIntro /></RevealOnScroll>
       <RevealOnScroll><FeaturedProductCard /></RevealOnScroll>
-      <RevealOnScroll><FuturePortfolioGrid /></RevealOnScroll>
     </main>
   );
 }

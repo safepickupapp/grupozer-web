@@ -1,7 +1,7 @@
 import { getTranslations } from "next-intl/server";
 import { Container } from "@/components/layout/Container";
 import { Section } from "@/components/layout/Section";
-import { PhoneMock } from "@/components/interactive/PhoneMock";
+import { AppScreenshots } from "@/components/interactive/PhoneMock";
 
 export async function FeaturedProductCard() {
   const t = await getTranslations("portfolio");
@@ -39,7 +39,7 @@ export async function FeaturedProductCard() {
                 {t("sp.cta")}
               </a>
             </div>
-            <PhoneMock />
+            <AppScreenshots />
           </div>
         </div>
       </Container>
